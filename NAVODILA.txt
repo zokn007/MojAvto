@@ -1,0 +1,3 @@
+MojAvto by Davor Gričnik v1.3
+
+Dodano: graf servisov, mesečni graf stroškov, graf stroškov po kategorijah, zdravje vozila in povzetek stroškov na začetni strani.
