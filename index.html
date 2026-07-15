@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik" />
-  <title>MojAvto by Davor Gričnik v1.3</title>
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.4.3" />
+  <title>MojAvto by Davor Gričnik – Verzija 1.4.3</title>
   <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="apple-touch-icon" href="icon.png" />
   <style>
     :root{
       --bg:#07111f; --panel:#101d2e; --panel2:#16253a; --text:#eef5ff;
@@ -59,26 +59,67 @@
     .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick button{min-height:88px;background:var(--panel2);border:1px solid var(--line);border-radius:17px;color:white;font-weight:700}.quick span{font-size:25px;display:block;margin-bottom:7px}
     .chart{height:210px;padding:10px 4px 22px}.chart-title{font-size:14px;font-weight:800;margin-bottom:4px}.chart-sub{font-size:11px;color:var(--muted);margin-bottom:8px}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}.metric{background:#122238;border:1px solid var(--line);border-radius:15px;padding:12px}.metric b{display:block;font-size:18px;margin-top:4px}.health{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:center}.health-ring{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#22c55e var(--health),#26384f 0);position:relative}.health-ring:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#101d2e}.health-ring strong{position:relative;z-index:1;font-size:22px}.health-list{display:grid;gap:7px}.health-line{display:flex;justify-content:space-between;font-size:12px}.home-costs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.home-costs .metric{text-align:center}@media(max-width:760px){.metric-row,.home-costs{grid-template-columns:repeat(2,1fr)}}.chart-grid line{stroke:#29405a;stroke-width:1}.chart-grid text,.chart-points text{fill:#9fb0c5;font-size:10px}.chart-line{fill:none;stroke:#38bdf8;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.chart-points circle{fill:#fff;stroke:#2563eb;stroke-width:4}
     .notice{padding:12px 14px;border-radius:14px;background:#1f3045;border-left:4px solid #38bdf8;color:#dcecff;margin-bottom:10px}
+
+    .hero-appname{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:2;background:rgba(4,12,24,.76);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:8px 15px;font-size:13px;font-weight:850;text-align:center;white-space:nowrap;text-shadow:none;backdrop-filter:blur(8px)}
+    .hero-health{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin:12px 0 2px;padding:10px 12px;background:rgba(4,12,24,.67);border:1px solid rgba(255,255,255,.16);border-radius:17px;text-shadow:none;backdrop-filter:blur(8px)}
+    .hero-health .health-ring{width:62px;height:62px}.hero-health .health-ring:after{inset:7px;background:rgba(7,17,31,.96)}.hero-health .health-ring strong{font-size:16px}.hero-health .health-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 12px}.hero-health .health-line{font-size:10px;gap:6px}.hero-health .health-line b{text-align:right}
+    @media(max-width:520px){.hero-health .health-list{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-appname{font-size:10px;max-width:calc(100% - 24px);white-space:normal;width:max-content}}
     @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:285px;background-position:58% center}.hero-grid{grid-template-columns:1fr}.km{text-align:left}.quick{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:480px){.app{padding-left:10px;padding-right:10px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.nav button{font-size:9px}.nav button span{font-size:19px}.vehicle-name{font-size:23px}}
-  </style>
+  
+/* v1.4.3 */
+.hero-app-title,.app-title-overlay,.hero-title-app{
+  text-align:center !important;
+  width:100% !important;
+  left:0 !important;
+  right:0 !important;
+}
+.health-status-text,.status-label-value{display:none !important}
+.health-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:0 0 auto}
+.health-dot.green{background:#22c55e}
+.health-dot.white{background:#fff;border:1px solid #94a3b8}
+.health-dot.red{background:#ef4444}
+
+
+    .health-line{justify-content:flex-start!important;align-items:center;gap:7px}
+    .health-line b{display:none!important}
+    .health-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:0 0 10px;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+    .health-dot.green{background:#22c55e}
+    .health-dot.white{background:#fff;border:1px solid #94a3b8}
+    .health-dot.red{background:#ef4444}
+    .about-brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+    .about-logo{width:72px;height:72px;border-radius:17px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+    .app-footer{text-align:center;color:var(--muted);font-size:11px;padding:22px 8px 4px}
+
+
+.hero-health-title{
+  margin-top:16px;
+  text-align:center;
+  font-size:15px;
+  font-weight:850;
+  letter-spacing:.2px;
+  text-shadow:0 2px 8px rgba(0,0,0,.65);
+}
+</style>
 </head>
 <body>
 <div class="app">
-  <header class="top">
-    <div class="brand"><div class="logo">🚘</div><div><h1>MojAvto</h1><div class="sub">by Davor Gričnik</div></div></div>
-    <button class="chip" id="themeBtn">☀️</button>
-  </header>
 
   <main>
     <section id="home" class="section active">
       <div class="hero">
+        <div class="hero-appname">MojAvto by Davor Gričnik · Verzija 1.4.3</div>
         <div class="hero-grid">
           <div><div class="vehicle-name" id="heroName">Dodaj svoje vozilo</div><div class="vehicle-meta" id="heroMeta">Znamka, model, letnik in registracija</div></div>
           <div class="km" id="heroKm">0 km<small>trenutno stanje</small></div>
         </div>
         <div class="progress"><div class="progress-fill" id="serviceFill"></div><span id="serviceProgress"></span></div><div class="progress-labels"><span>Po servisu</span><span>Servis se približuje</span><span>Servis zdaj</span></div>
         <div class="sub" id="serviceText">Vnesi vozilo in servisni interval.</div>
+        <div class="hero-health-title">Zdravje avta</div>
+        <div class="hero-health">
+          <div class="health-ring" id="healthRing" style="--health:0%"><strong id="healthScore">0%</strong></div>
+          <div class="health-list" id="healthList"></div>
+        </div>
       </div>
 
       <div class="grid">
@@ -86,13 +127,6 @@
         <div class="card stat"><div class="icon">⛽</div><div class="label">Povpr. poraba</div><div class="value" id="avgFuel">—</div><div class="small">l/100 km</div></div>
         <div class="card stat"><div class="icon">💶</div><div class="label">Stroški letos</div><div class="value" id="yearCost">0 €</div><div class="small">vsi vnosi</div></div>
         <div class="card stat"><div class="icon">🔔</div><div class="label">Aktivni opomniki</div><div class="value" id="reminderCount">0</div><div class="small">prihajajoči</div></div>
-      </div>
-
-
-      <div class="section-title"><h2>Zdravje vozila</h2></div>
-      <div class="card health">
-        <div class="health-ring" id="healthRing" style="--health:0%"><strong id="healthScore">0%</strong></div>
-        <div class="health-list" id="healthList"></div>
       </div>
       <div class="section-title"><h2>Stroški vozila</h2></div>
       <div class="home-costs">
@@ -117,12 +151,11 @@
     <section id="vehicle" class="section">
       <div class="section-title"><h2>Moje vozilo</h2><button class="btn primary" onclick="openModal('vehicle')">Uredi</button></div>
       <div id="vehicleCard" class="card"></div>
-      <div class="section-title"><h2>Pnevmatike in dokumenti</h2></div>
+      <div class="section-title"><h2>Pnevmatike, registracija in vinjeta</h2></div>
       <div class="grid">
         <div class="card stat"><div class="icon">🛞</div><div class="label">Komplet pnevmatik</div><div class="value" id="tireType">—</div><div class="small" id="tireInfo">ni podatka</div></div>
-        <div class="card stat"><div class="icon">📄</div><div class="label">Registracija velja do</div><div class="value" id="regDate">—</div><div class="small" id="regDays">ni podatka</div></div>
-        <div class="card stat"><div class="icon">🛡️</div><div class="label">Zavarovanje velja do</div><div class="value" id="insuranceDate">—</div><div class="small" id="insuranceDays">ni podatka</div></div>
-        <div class="card stat"><div class="icon">🧪</div><div class="label">Tehnični pregled</div><div class="value" id="inspectionDate">—</div><div class="small" id="inspectionDays">ni podatka</div></div>
+        <div class="card stat"><div class="icon">📄</div><div class="label">Registracija velja do</div><div class="value" id="documentsDate">—</div><div class="small" id="documentsDays">ni podatka</div></div>
+        <div class="card stat"><div class="icon">🛣️</div><div class="label">Vinjeta velja do</div><div class="value" id="vignetteDate">—</div><div class="small" id="vignetteDays">ni podatka</div></div>
       </div>
     </section>
 
@@ -173,6 +206,12 @@
           <button class="btn danger" onclick="resetData()">Izbriši vse podatke</button>
         </div>
       </div>
+      <div class="section-title"><h2>O aplikaciji</h2></div>
+      <div class="card">
+        <div class="about-brand"><img class="about-logo" src="dg-smart-apps.png" alt="DG Smart Apps"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.4.3</div></div></div>
+        <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
+      </div>
+      <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
     </section>
   </main>
 </div>
@@ -195,6 +234,16 @@
 const KEY='mojAvtoV1';
 const emptyData={vehicle:{},services:[],fuel:[],expenses:[],reminders:[]};
 let data=load();
+if(data.vehicle && 'vignetteFrom' in data.vehicle){delete data.vehicle.vignetteFrom;localStorage.setItem(KEY,JSON.stringify(data));}
+if(data.vehicle && !data.vehicle.vehicleDocumentsDate){
+  data.vehicle.vehicleDocumentsDate = data.vehicle.registration || data.vehicle.insurance || data.vehicle.inspection || '';
+  if(data.vehicle.vehicleDocumentsDate){
+    data.vehicle.registration = data.vehicle.vehicleDocumentsDate;
+    data.vehicle.insurance = data.vehicle.vehicleDocumentsDate;
+    data.vehicle.inspection = data.vehicle.vehicleDocumentsDate;
+    localStorage.setItem(KEY,JSON.stringify(data));
+  }
+}
 function load(){try{return {...emptyData,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return structuredClone(emptyData)}}
 function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
 const fmtDate=d=>d?new Date(d+'T12:00:00').toLocaleDateString('sl-SI'):'—';
@@ -224,8 +273,7 @@ function openModal(type){
    field('VIN','vin','text',v.vin,'',true)+field('Trenutni kilometri','km','number',v.km,'min="0" required')+
    field('Servisni interval (km)','serviceInterval','number',v.serviceInterval||15000,'min="1000"')+
    field('Zadnji servis pri km','lastServiceKm','number',v.lastServiceKm,'min="0"')+
-   field('Registracija velja do','registration','date',v.registration)+field('Zavarovanje velja do','insurance','date',v.insurance)+
-   field('Tehnični pregled do','inspection','date',v.inspection)+select('Pnevmatike','tireType',['Letne','Zimske','Celoletne'],v.tireType||'Letne')+
+   field('Registracija, zavarovanje in tehnični pregled do','vehicleDocumentsDate','date',v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection,'',true)+field('Vinjeta velja do','vignetteTo','date',v.vignetteTo,'',true)+select('Pnevmatike','tireType',['Letne','Zimske','Celoletne'],v.tireType||'Letne')+
    field('Dimenzija pnevmatik','tireSize','text',v.tireSize)+field('DOT / leto pnevmatik','tireDot','text',v.tireDot)
  ,'vehicle')}
  if(type==='service'){title='Dodaj servis';html=formWrap(
@@ -236,7 +284,7 @@ function openModal(type){
  if(type==='fuel'){title='Točenje goriva';html=formWrap(
    field('Datum','date','date',new Date().toISOString().slice(0,10),'required')+field('Kilometri','km','number',v.km||'','min="0" required')+
    field('Cena skupaj (€)','cost','number','','step="0.01" min="0" required')+field('Cena na liter (€)','pricePerLiter','number','','step="0.001" min="0" required')+
-   field('Izračunani litri','liters','number','','step="0.01" readonly required')+select('Bencinska črpalka','station',['Petrol','MOL','OMV','INA','Shell','Ostalo'],'Petrol')+
+   field('Izračunani litri','liters','number','','step="0.01" readonly required')+select('Bencinska črpalka','station',['MOL','Petrol','OMV','INA','Shell','Ostalo'],'MOL')+
    select('Poln rezervoar','fullTank',['Da','Ne'],'Da')+area('Opomba','note','')
  ,'fuel')}
  if(type==='expense'){title='Dodaj strošek';html=formWrap(
@@ -263,7 +311,15 @@ function openModal(type){
 function closeModal(){document.getElementById('modal').close()}
 function handleSubmit(e){
  e.preventDefault(); const fd=Object.fromEntries(new FormData(e.target)); const type=fd._type; delete fd._type;
- if(type==='vehicle'){data.vehicle=fd}
+ if(type==='vehicle'){
+  delete fd.vignetteFrom;
+  if(fd.vehicleDocumentsDate){
+    fd.registration=fd.vehicleDocumentsDate;
+    fd.insurance=fd.vehicleDocumentsDate;
+    fd.inspection=fd.vehicleDocumentsDate;
+  }
+  data.vehicle=fd
+}
  else{fd.id=uid(); data[type==='service'?'services':type==='fuel'?'fuel':type==='expense'?'expenses':'reminders'].push(fd);
    if(fd.km && Number(fd.km)>Number(data.vehicle.km||0)) data.vehicle.km=fd.km;
    if(type==='service' && (fd.category==='Redni servis'||fd.category==='Olje in filtri')) data.vehicle.lastServiceKm=fd.km;
@@ -273,12 +329,31 @@ function handleSubmit(e){
  closeModal(); save();
 }
 function del(group,id){if(confirm('Želiš izbrisati ta vnos?')){data[group]=data[group].filter(x=>x.id!==id);save()}}
+function checkServiceNotification(left,v){
+ if(!v.lastServiceKm || !Number.isFinite(left) || left>3000) return;
+ const nextAt=Number(v.lastServiceKm||0)+Number(v.serviceInterval||15000);
+ const key=`service-notified-${nextAt}`;
+ if(localStorage.getItem(key)) return;
+ const body=left<=0?`Redni servis je potreben zdaj (${Number(v.km||0).toLocaleString('sl-SI')} km).`:`Do rednega servisa je še približno ${left.toLocaleString('sl-SI')} km.`;
+ const send=()=>{try{new Notification('MojAvto – servis', {body, icon:'icon.png'});localStorage.setItem(key,'1')}catch(e){}};
+ if('Notification' in window){
+   if(Notification.permission==='granted') send();
+   else if(Notification.permission==='default') Notification.requestPermission().then(p=>{if(p==='granted')send()});
+ }
+}
+
+function healthDot(status){
+  const cls=status==='green'?'green':status==='red'?'red':'white';
+  return `<span class="health-dot ${cls}" aria-label="${cls==='green'?'urejeno':cls==='red'?'potreben ukrep':'ni podatka'}"></span>`;
+}
+
 function renderAll(){
  const v=data.vehicle||{}, name=[v.brand,v.model].filter(Boolean).join(' ')||'Dodaj svoje vozilo';
  heroName.textContent=name; heroMeta.textContent=[v.year,v.plate].filter(Boolean).join(' • ')||'Znamka, model, letnik in registracija';
  heroKm.innerHTML=`${Number(v.km||0).toLocaleString('sl-SI')} km<small>trenutno stanje</small>`;
  const interval=Number(v.serviceInterval||15000), since=Math.max(0,Number(v.km||0)-Number(v.lastServiceKm||0)), left=Math.max(0,interval-since);
  const servicePct=Math.min(100,Math.max(0,(since/interval)*100)); serviceProgress.style.left=servicePct+'%'; serviceFill.style.width=servicePct+'%'; serviceText.textContent=v.lastServiceKm?`Do naslednjega rednega servisa približno ${left.toLocaleString('sl-SI')} km.`:'Vnesi zadnji servis in servisni interval.';
+ checkServiceNotification(left, v);
  nextService.textContent=v.lastServiceKm?left.toLocaleString('sl-SI')+' km':'—'; nextServiceSmall.textContent=v.lastServiceKm?'do intervala':'ni podatka';
 
  const totalYear=yearSum(); yearCost.textContent=money(totalYear); expenseYearCost.textContent=money(totalYear);
@@ -286,9 +361,15 @@ function renderAll(){
  const future=data.reminders.filter(r=>daysTo(r.date)>=0).sort((a,b)=>a.date.localeCompare(b.date)); reminderCount.textContent=future.length;
  homeReminders.innerHTML=future.slice(0,4).map(reminderHTML).join('')||empty('Ni prihajajočih opomnikov.');
 
- vehicleCard.innerHTML=`<div style="font-size:25px;font-weight:900">${esc(name)}</div><div class="vehicle-meta">${esc([v.year,v.plate].filter(Boolean).join(' • '))}</div><hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><div class="form-grid"><div><div class="sub">VIN</div><b>${esc(v.vin||'—')}</b></div><div><div class="sub">Kilometri</div><b>${Number(v.km||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Servisni interval</div><b>${Number(v.serviceInterval||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Zadnji servis</div><b>${Number(v.lastServiceKm||0).toLocaleString('sl-SI')} km</b></div></div>`;
+ vehicleCard.innerHTML=`<div style="font-size:25px;font-weight:900">${esc(name)}</div><div class="vehicle-meta">${esc([v.year,v.plate].filter(Boolean).join(' • '))}</div><hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><div class="form-grid"><div><div class="sub">VIN</div><b>${esc(v.vin||'—')}</b></div><div><div class="sub">Kilometri</div><b>${Number(v.km||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Servisni interval</div><b>${Number(v.serviceInterval||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Zadnji servis</div><b>${Number(v.lastServiceKm||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Vinjeta</div><b>${fmtDate(v.vignetteTo)}</b></div></div>`;
  tireType.textContent=v.tireType||'—'; tireInfo.textContent=[v.tireSize,v.tireDot].filter(Boolean).join(' • ')||'ni podatka';
- dateCard('reg',v.registration);dateCard('insurance',v.insurance);dateCard('inspection',v.inspection);
+ const sharedDocDate=v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection;
+ document.getElementById('documentsDate').textContent=fmtDate(sharedDocDate);
+ const docDays=daysTo(sharedDocDate);
+ document.getElementById('documentsDays').textContent=docDays===null?'ni podatka':docDays<0?`poteklo pred ${Math.abs(docDays)} dnevi`:docDays===0?'poteče danes':`še ${docDays} dni`;
+ document.getElementById('vignetteDate').textContent=fmtDate(v.vignetteTo);
+ const vigDays=daysTo(v.vignetteTo);
+ document.getElementById('vignetteDays').textContent=vigDays===null?'ni podatka':vigDays<0?`potekla pred ${Math.abs(vigDays)} dnevi`:vigDays===0?'poteče danes':`še ${vigDays} dni`;
 
  serviceList.innerHTML=[...data.services].sort(sortDate).map(serviceHTML).join('')||empty('Še ni servisnih vnosov.');
  fuelList.innerHTML=[...data.fuel].sort(sortDate).map(fuelHTML).join('')||empty('Še ni vnosov goriva.');
@@ -348,11 +429,36 @@ function renderExpenseCharts(){
  const entries=Object.entries(sums).sort((a,b)=>b[1]-a[1]).slice(0,8); svgBarChart(categoryChart,entries.map(x=>x[1]),entries.map(x=>x[0].slice(0,8)));
 }
 function renderHealth(){
- const v=data.vehicle||{}; let score=100, lines=[];
- const interval=Number(v.serviceInterval||15000), since=Math.max(0,Number(v.km||0)-Number(v.lastServiceKm||0)), pct=interval?since/interval:0;
- if(!v.lastServiceKm){score-=20;lines.push(['Servis','Ni podatka','🟠'])}else if(pct>=1){score-=35;lines.push(['Servis','Potreben zdaj','🔴'])}else if(pct>.8){score-=18;lines.push(['Servis','Kmalu','🟠'])}else lines.push(['Servis','Urejen','🟢']);
- [['Registracija',v.registration],['Zavarovanje',v.insurance],['Tehnični',v.inspection]].forEach(([n,d])=>{let days=daysTo(d);if(days===null){score-=8;lines.push([n,'Ni podatka','⚪'])}else if(days<0){score-=20;lines.push([n,'Poteklo','🔴'])}else if(days<30){score-=10;lines.push([n,`še ${days} dni`,'🟠'])}else lines.push([n,'Urejeno','🟢'])});
- score=Math.max(0,Math.min(100,score)); healthScore.textContent=score+'%'; healthRing.style.setProperty('--health',score+'%'); healthList.innerHTML=lines.map(x=>`<div class="health-line"><span>${x[2]} ${x[0]}</span><b>${x[1]}</b></div>`).join('');
+ const v=data.vehicle||{};
+ let score=100;
+ const lines=[];
+ const add=(name,status)=>lines.push({name,status});
+ const interval=Number(v.serviceInterval||15000);
+ const hasService=Boolean(v.lastServiceKm && interval>0);
+ const since=Math.max(0,Number(v.km||0)-Number(v.lastServiceKm||0));
+ const left=interval-since;
+ if(!hasService){score-=20;add('Servis','white')}
+ else if(left<=3000){score-=30;add('Servis','red')}
+ else add('Servis','green');
+
+ const sharedDate=v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection;
+ const docDays=daysTo(sharedDate);
+ if(docDays===null){score-=12;add('Registracija','white')}
+ else if(docDays<30){score-=25;add('Registracija','red')}
+ else add('Registracija','green');
+
+ const vigDays=daysTo(v.vignetteTo);
+ if(vigDays===null){score-=10;add('Vinjeta','white')}
+ else if(vigDays<30){score-=20;add('Vinjeta','red')}
+ else add('Vinjeta','green');
+
+ if(!v.tireType){score-=8;add('Pnevmatike','white')}
+ else add('Pnevmatike','green');
+
+ score=Math.max(0,Math.min(100,score));
+ healthScore.textContent=score+'%';
+ healthRing.style.setProperty('--health',score+'%');
+ healthList.innerHTML=lines.map(x=>`<div class="health-line">${healthDot(x.status)}<span>${x.name}</span></div>`).join('');
 }
 
 function exportJSON(){download('moj-avto-varnostna-kopija.json',JSON.stringify(data,null,2),'application/json')}
@@ -365,7 +471,6 @@ function exportCSV(){
 function download(name,content,type){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
 function importJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();alert('Podatki so uspešno uvoženi.')}catch{alert('Datoteka ni veljavna.')}};r.readAsText(f)}
 function resetData(){if(confirm('Res želiš trajno izbrisati vse podatke?')){data=structuredClone(emptyData);save()}}
-themeBtn.onclick=()=>{document.body.classList.toggle('light');alert('Svetli način bo dodan v naslednji različici.')}
 renderAll();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>

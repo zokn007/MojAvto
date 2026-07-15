@@ -1,3 +1,17 @@
-MojAvto by Davor Gričnik v1.3
+MojAvto by Davor Gričnik – Verzija 1.4.2
 
-Dodano: graf servisov, mesečni graf stroškov, graf stroškov po kategorijah, zdravje vozila in povzetek stroškov na začetni strani.
+Novosti:
+- vključen izbrani logotip DG Smart Apps
+- naslov aplikacije je centriran na fotografiji vozila
+- zdravje vozila prikazuje samo piko in naziv
+- zelena pika = urejeno, bela = ni podatka, rdeča = potreben ukrep
+- registracija, zavarovanje in tehnični pregled uporabljajo en skupni datum
+- dokumenti so prikazani v eni kartici
+- vinjeta ima datum od–do
+- dodan podpis Designed & Developed by Davor Gričnik © 2026
+
+
+NOVOSTI V VERZIJI 1.4.3
+- »Zdravje vozila« je preimenovano v »Zdravje avta«
+- »Dokumenti vozila« je preimenovano v »Registracija«
+- pri vinjeti se vnaša in prikazuje samo datum »velja do«
