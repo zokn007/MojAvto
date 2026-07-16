@@ -1,15 +1,15 @@
 {
-  "name": "MojAvto by Davor Gričnik – Verzija 1.4.3",
+  "name": "MojAvto",
   "short_name": "MojAvto",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#07111f",
-  "theme_color": "#111827",
+  "background_color": "#070b12",
+  "theme_color": "#070b12",
   "icons": [
     {
-      "src": "icon.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
+      "src": "mojavto-icon.jpeg",
+      "sizes": "any",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ]

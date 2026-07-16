@@ -6,10 +6,14 @@
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.4.3" />
-  <title>MojAvto by Davor Gričnik – Verzija 1.4.3</title>
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.4.5" />
+  <title>MojAvto</title>
+<link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
+<link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
+<link rel="apple-touch-icon" href="mojavto-icon.jpeg">
+
   <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icon.png" />
+  
   <style>
     :root{
       --bg:#07111f; --panel:#101d2e; --panel2:#16253a; --text:#eef5ff;
@@ -67,7 +71,7 @@
     @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:285px;background-position:58% center}.hero-grid{grid-template-columns:1fr}.km{text-align:left}.quick{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:480px){.app{padding-left:10px;padding-right:10px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.nav button{font-size:9px}.nav button span{font-size:19px}.vehicle-name{font-size:23px}}
   
-/* v1.4.3 */
+/* v1.4.5 */
 .hero-app-title,.app-title-overlay,.hero-title-app{
   text-align:center !important;
   width:100% !important;
@@ -100,16 +104,21 @@
   letter-spacing:.2px;
   text-shadow:0 2px 8px rgba(0,0,0,.65);
 }
+
+#appSplash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,#172235 0,#070b12 52%,#020408 100%);transition:opacity .45s ease,visibility .45s ease}
+#appSplash.splash-hidden{opacity:0;visibility:hidden;pointer-events:none}.splash-inner{width:min(80vw,340px);text-align:center}.splash-icon{width:min(62vw,230px);height:min(62vw,230px);border-radius:25%;object-fit:cover;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.splash-name{margin-top:20px;font-size:29px;font-weight:900}.splash-sub{margin-top:6px;color:#c9d2df;font-size:14px;letter-spacing:.7px}.splash-credit{margin-top:25px;color:#8794a7;font-size:11px;line-height:1.55}
+
 </style>
 </head>
 <body>
+<div id="appSplash" aria-label="MojAvto se nalaga"><div class="splash-inner"><img class="splash-icon" src="mojavto-icon.jpeg" alt="MojAvto"><div class="splash-name">MojAvto</div><div class="splash-sub">DG Smart app</div><div class="splash-credit">Designed &amp; Developed<br>by Davor Gričnik © 2026</div></div></div>
 <div class="app">
 
   <main>
     <section id="home" class="section active">
-      <div class="hero">
-        <div class="hero-appname">MojAvto by Davor Gričnik · Verzija 1.4.3</div>
-        <div class="hero-grid">
+<div class="hero">
+<div class="hero-grid">
           <div><div class="vehicle-name" id="heroName">Dodaj svoje vozilo</div><div class="vehicle-meta" id="heroMeta">Znamka, model, letnik in registracija</div></div>
           <div class="km" id="heroKm">0 km<small>trenutno stanje</small></div>
         </div>
@@ -194,7 +203,7 @@
     </section>
 
     <section id="more" class="section">
-      <div class="section-title"><h2>Opomniki</h2><button class="btn primary" onclick="openModal('reminder')">+ Dodaj</button></div>
+<div class="section-title"><h2>Opomniki</h2><button class="btn primary" onclick="openModal('reminder')">+ Dodaj</button></div>
       <div id="reminderList" class="list"></div>
       <div class="section-title"><h2>Podatki in varnost</h2></div>
       <div class="card">
@@ -208,7 +217,7 @@
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="dg-smart-apps.png" alt="DG Smart Apps"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.4.3</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.4.5</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -403,7 +412,7 @@ function renderFuelChart(){
  const w=700,h=180,pad=28,max=Math.max(10,...vals.map(x=>x.v))*1.15,min=Math.max(0,Math.min(...vals.map(x=>x.v))*0.8);
  const x=i=>pad+i*((w-2*pad)/Math.max(1,vals.length-1)), y=v=>h-pad-(v-min)/(max-min)*(h-2*pad);
  const pts=vals.map((o,i)=>`${x(i)},${y(o.v)}`).join(' ');
- const circles=vals.map((o,i)=>`<circle cx="${x(i)}" cy="${y(o.v)}" r="5"><title>${o.v.toFixed(1)} l/100 km • ${o.station}</title></circle><text x="${x(i)}" y="${h-7}" text-anchor="middle">${o.l}</text>`).join('');
+ const circles=vals.map((o,i)=>`<circle cx="${x(i)}" cy="${y(o.v)}" r="5"><title>MojAvto</title></circle><text x="${x(i)}" y="${h-7}" text-anchor="middle">${o.l}</text>`).join('');
  const grid=[0,.25,.5,.75,1].map(t=>{let yy=pad+t*(h-2*pad),val=max-t*(max-min);return `<line x1="${pad}" y1="${yy}" x2="${w-pad}" y2="${yy}"/><text x="3" y="${yy+4}">${val.toFixed(1)}</text>`}).join('');
  fuelChart.innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Graf porabe goriva" style="width:100%;height:100%;overflow:visible"><g class="chart-grid">${grid}</g><polyline class="chart-line" points="${pts}"/> <g class="chart-points">${circles}</g></svg>`;
 }
@@ -412,7 +421,7 @@ function svgBarChart(el, values, labels, moneyMode=true){
  if(!values.length || values.every(v=>v===0)){el.innerHTML='<div class="empty" style="width:100%">Za graf še ni dovolj podatkov.</div>';return}
  const w=700,h=180,pad=34,max=Math.max(...values,1)*1.15,bw=(w-2*pad)/values.length;
  const grid=[0,.25,.5,.75,1].map(t=>{let yy=pad+t*(h-2*pad),val=max*(1-t);return `<line x1="${pad}" y1="${yy}" x2="${w-pad}" y2="${yy}"/><text x="2" y="${yy+4}">${moneyMode?Math.round(val)+' €':Math.round(val)}</text>`}).join('');
- const bars=values.map((v,i)=>{let bh=(v/max)*(h-2*pad),x=pad+i*bw+bw*.18,y=h-pad-bh;return `<rect x="${x}" y="${y}" width="${bw*.64}" height="${bh}" rx="5" fill="#38bdf8"><title>${labels[i]}: ${money(v)}</title></rect><text x="${x+bw*.32}" y="${h-8}" text-anchor="middle">${labels[i]}</text>`}).join('');
+ const bars=values.map((v,i)=>{let bh=(v/max)*(h-2*pad),x=pad+i*bw+bw*.18,y=h-pad-bh;return `<rect x="${x}" y="${y}" width="${bw*.64}" height="${bh}" rx="5" fill="#38bdf8"><title>MojAvto</title></rect><text x="${x+bw*.32}" y="${h-8}" text-anchor="middle">${labels[i]}</text>`}).join('');
  el.innerHTML=`<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:100%;overflow:visible"><g class="chart-grid">${grid}</g>${bars}</svg>`;
 }
 function renderServiceChart(){
@@ -473,6 +482,8 @@ function importJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader
 function resetData(){if(confirm('Res želiš trajno izbrisati vse podatke?')){data=structuredClone(emptyData);save()}}
 renderAll();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+window.addEventListener('load',()=>{const splash=document.getElementById('appSplash');if(!splash)return;setTimeout(()=>splash.classList.add('splash-hidden'),650);setTimeout(()=>splash.remove(),1200);});
 </script>
 </body>
 </html>

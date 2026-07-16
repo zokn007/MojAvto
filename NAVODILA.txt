@@ -15,3 +15,19 @@ NOVOSTI V VERZIJI 1.4.3
 - »Zdravje vozila« je preimenovano v »Zdravje avta«
 - »Dokumenti vozila« je preimenovano v »Registracija«
 - pri vinjeti se vnaša in prikazuje samo datum »velja do«
+
+
+NOVOSTI V VERZIJI 1.4.4
+- uporabljena je točno poslana ikona brez sprememb
+- ime na namizju telefona je MojAvto
+- ista ikona je uporabljena kot PWA ikona, Apple Touch Icon in favicon
+- ista ikona je prikazana na vrhu začetnega zaslona in v razdelku O aplikaciji
+- dodan je temen uvodni zaslon z napisi MojAvto in DG Smart app
+- dodan je podpis Designed & Developed by Davor Gričnik © 2026
+
+
+NOVOSTI V VERZIJI 1.4.5
+- odstranjen je dodatni logotip in napis na vrhu začetne strani
+- odstranjen je podvojeni logotip na vrhu razdelka Več
+- v razdelku O aplikaciji je stara DG ikona zamenjana z zadnjo poslano ikono MojAvto
+- ista nespremenjena ikona ostaja PWA ikona, favicon, Apple Touch Icon in Splash Screen
