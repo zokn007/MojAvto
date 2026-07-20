@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html data-app-version="1.5.5" data-build-id="local-1.5.5" lang="sl">
+<html data-app-version="1.5.6" data-build-id="local-1.5.6" lang="sl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.5.5" />
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.5.6" />
   <title>MojAvto</title>
 <link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
 <link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
@@ -226,7 +226,7 @@
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.5.5</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.5.6</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -301,12 +301,15 @@ function openModal(type){
    field('Strošek (€)','cost','number','','step="0.01" min="0"')+field('Izvajalec / servis','provider','text','')+area('Opis opravljenega dela','note','')
  ,'service')}
  if(type==='fuel'){title='Točenje goriva';html=formWrap(
-   field('Datum','date','date',new Date().toISOString().slice(0,10),'required')+field('Kilometri','km','number',v.km||'','min="0" required')+
-   select('Vrsta goriva','fuelType',['Dizel','NMB-95','NMB-100','Dizel Premium'],v.fuelType||'Dizel')+
-   field('Natočeni litri','liters','number','','step="0.01" min="0.01" required')+
-   field('Cena skupaj (€)','cost','number','','step="0.01" min="0.01" required')+field('Cena na liter (€)','pricePerLiter','number','','step="0.001" min="0" required')+
-   field('Poraba od prejšnjega polnega točenja','calculatedConsumption','text','','readonly')+select('Bencinska črpalka','station',['MOL','Petrol','OMV','INA','Shell','Ostalo'],'MOL')+
-   select('Poln rezervoar','fullTank',['Da','Ne'],'Da')+area('Opomba','note','')+
+   field('Natočeni litri','liters','number','','step="0.01" min="0.01" inputmode="decimal" required')+
+   '<input type="hidden" name="date" value="'+new Date().toISOString().slice(0,10)+'">'+
+   '<input type="hidden" name="km" value="'+esc(v.km||0)+'">'+
+   '<input type="hidden" name="fuelType" value="'+esc(v.fuelType||'Dizel')+'">'+
+   '<input type="hidden" name="station" value="MOL">'+
+   '<input type="hidden" name="fullTank" value="Da">'+
+   '<input type="hidden" name="cost" value="">'+
+   '<input type="hidden" name="pricePerLiter" value="">'+
+   '<div class="field full"><div class="notice" id="fuelCalcSummary">Vnesi litre. Cena, skupni znesek in poraba se izračunajo samodejno.</div></div>'+
    '<div class="field full"><div class="notice" id="fuelPriceStatus">Iščem aktualno ceno goriva …</div></div>'
  ,'fuel')}
  if(type==='expense'){title='Dodaj strošek';html=formWrap(
@@ -325,18 +328,17 @@ function openModal(type){
  const form=document.getElementById('dynamicForm'); form.innerHTML=html; form.onsubmit=handleSubmit;
  document.getElementById('modal').showModal();
  if(type==='fuel'){
-   const cost=form.elements.cost, price=form.elements.pricePerLiter, liters=form.elements.liters, km=form.elements.km, full=form.elements.fullTank, fuelType=form.elements.fuelType, cons=form.elements.calculatedConsumption;
-   let priceManuallyChanged=false;
+   const cost=form.elements.cost, price=form.elements.pricePerLiter, liters=form.elements.liters, km=form.elements.km, fuelType=form.elements.fuelType;
+   const summary=document.getElementById('fuelCalcSummary');
    const calc=()=>{
-     const l=Number(String(liters.value).replace(',','.')), c=Number(String(cost.value).replace(',','.'));
-     if(l>0 && c>0 && !priceManuallyChanged) price.value=(c/l).toFixed(3);
+     const l=Number(String(liters.value).replace(',','.')), p=Number(String(price.value).replace(',','.'));
+     cost.value=(l>0&&p>0)?(l*p).toFixed(2):'';
      const prev=[...data.fuel].filter(x=>x.fullTank==='Da'&&Number(x.km)<Number(km.value)).sort((a,b)=>Number(b.km)-Number(a.km))[0];
      const dist=prev?Number(km.value)-Number(prev.km):0;
-     cons.value=(full.value==='Da'&&dist>0&&l>0)?(l/dist*100).toFixed(2)+' l/100 km':'—';
+     const consumption=(dist>0&&l>0)?(l/dist*100):null;
+     summary.textContent=l>0&&p>0?`Cena ${p.toFixed(3)} €/l • skupaj ${Number(cost.value).toFixed(2)} €${consumption?` • poraba ${consumption.toFixed(2)} l/100 km`:''}`:'Vnesi litre. Cena, skupni znesek in poraba se izračunajo samodejno.';
    };
-   [cost,liters,km,full].forEach(el=>el.addEventListener('input',calc));
-   price.addEventListener('input',()=>{priceManuallyChanged=true});
-   fuelType.addEventListener('change',async()=>{priceManuallyChanged=false;await loadOnlineFuelPrice(fuelType.value,price);calc()});
+   liters.addEventListener('input',calc);
    loadOnlineFuelPrice(fuelType.value,price).then(calc); calc();
  }
 }
@@ -522,7 +524,7 @@ function exportPDF(){
  const rows=(items,cols)=>items.length?items.map(x=>`<tr>${cols.map(c=>`<td>${esc(c(x))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}">Ni podatkov.</td></tr>`;
  const html=`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>MojAvto poročilo</title><style>
  @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111;margin:0;font-size:11px}h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;margin:20px 0 7px;border-bottom:2px solid #222;padding-bottom:4px}.meta{color:#555;margin-bottom:15px}.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.box{border:1px solid #bbb;border-radius:8px;padding:8px}.box b{display:block;font-size:12px;margin-bottom:3px}table{width:100%;border-collapse:collapse;page-break-inside:auto}tr{page-break-inside:avoid}th,td{border:1px solid #bbb;padding:5px;text-align:left;vertical-align:top}th{background:#eee}.footer{margin-top:18px;color:#666;font-size:9px;text-align:center}@media print{button{display:none}}
- </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.5.5</div>
+ </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.5.6</div>
  <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Dokumenti veljajo do</b>${fmtDate(v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
  <h2>Servisi in vzdrževanje</h2><table><thead><tr><th>Datum</th><th>Vrsta</th><th>Km</th><th>Izvajalec/opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.services].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>[x.provider,x.note].filter(Boolean).join(' – '),x=>money(x.cost)])}</tbody></table>
  <h2>Gorivo</h2><table><thead><tr><th>Datum</th><th>Črpalka</th><th>Km</th><th>Litri</th><th>Znesek</th></tr></thead><tbody>${rows([...data.fuel].sort(sortDate),[x=>fmtDate(x.date),x=>x.station||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>Number(x.liters||0).toLocaleString('sl-SI'),x=>money(x.cost)])}</tbody></table>

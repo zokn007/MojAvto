@@ -1,0 +1,5 @@
+MojAvto 1.5.6
+
+- Popravljen Firebase GitHub deploy z istim načinom avtentikacije kot pri MojBazen (google-github-actions/auth).
+- Ob točenju uporabnik vnese samo natočene litre.
+- Datum, kilometri, vrsta goriva, spletna cena, skupni znesek in poraba se izračunajo oziroma določijo samodejno.
