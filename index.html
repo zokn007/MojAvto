@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html data-app-version="1.5.3" lang="sl">
+<html data-app-version="1.5.5" data-build-id="local-1.5.5" lang="sl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.5.2" />
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.5.5" />
   <title>MojAvto</title>
 <link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
 <link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
@@ -143,7 +143,7 @@
         <div class="card stat"><div class="icon">🛠️</div><div class="label">Naslednji servis</div><div class="value" id="nextService">—</div><div class="small" id="nextServiceSmall">ni podatka</div></div>
         <div class="card stat"><div class="icon">⛽</div><div class="label">Povpr. poraba</div><div class="value" id="avgFuel">—</div><div class="small">l/100 km</div></div>
         <div class="card stat"><div class="icon">💶</div><div class="label">Stroški letos</div><div class="value" id="yearCost">0 €</div><div class="small">vsi vnosi</div></div>
-        <div class="card stat"><div class="icon">🔔</div><div class="label">Aktivni opomniki</div><div class="value" id="reminderCount">0</div><div class="small">prihajajoči</div></div>
+        <div class="card stat"><div class="icon">⛽</div><div class="label">Predvidoma prazen</div><div class="value" id="fuelEmptyDate">—</div><div class="small" id="fuelRangeSmall">ni podatka</div></div>
       </div>
       <div class="section-title"><h2>Stroški vozila</h2></div>
       <div class="home-costs">
@@ -161,7 +161,7 @@
         <button onclick="openModal('reminder')"><span>🔔</span>Opomnik</button>
       </div>
 
-      <div class="section-title"><h2>Prihajajoče obveznosti</h2></div>
+      <div class="section-title"><h2>Prihajajoče obveznosti</h2><span class="badge green"><span id="reminderCount">0</span> aktivnih</span></div>
       <div id="homeReminders" class="list"></div>
     </section>
 
@@ -219,13 +219,14 @@
         <div style="display:flex;flex-wrap:wrap;gap:9px">
           <button class="btn" onclick="exportJSON()">Varnostna kopija JSON</button>
           <button class="btn" onclick="exportCSV()">Izvoz CSV</button>
+          <button class="btn primary" onclick="exportPDF()">Izvoz PDF</button>
           <label class="btn" style="display:inline-block">Uvozi JSON<input type="file" accept=".json" onchange="importJSON(event)" hidden></label>
           <button class="btn danger" onclick="resetData()">Izbriši vse podatke</button>
         </div>
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.5.2</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.5.5</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -278,7 +279,7 @@ document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{
 function formWrap(fields,type){
  return `<div class="form-grid">${fields}</div><div class="modal-actions"><button type="button" class="btn" onclick="closeModal()">Prekliči</button><button class="btn primary">Shrani</button></div><input type="hidden" name="_type" value="${type}">`;
 }
-const field=(label,name,type='text',value='',extra='',full=false)=>`<div class="field ${full?'full':''}"><label>${label}</label><input name="${name}" type="${type}" value="${esc(value)}" ${extra}></div>`;
+const field=(label,name,type='text',value='',extra='',full=false)=>`<div class="field ${full?'full':''}"><label>${label}</label><input name="${name}" type="${type}" value="${esc(value)}" ${type==='number'?'inputmode="decimal" pattern="[0-9.,]*"':''} ${extra}></div>`;
 const select=(label,name,opts,value='',full=false)=>`<div class="field ${full?'full':''}"><label>${label}</label><select name="${name}">${opts.map(o=>`<option value="${esc(o)}" ${o==value?'selected':''}>${esc(o)}</option>`).join('')}</select></div>`;
 const area=(label,name,value='')=>`<div class="field full"><label>${label}</label><textarea name="${name}">${esc(value)}</textarea></div>`;
 
@@ -288,7 +289,8 @@ function openModal(type){
    field('Znamka','brand','text',v.brand,'required')+field('Model','model','text',v.model,'required')+
    field('Letnik','year','number',v.year,'min="1900" max="2100"')+field('Registrska oznaka','plate','text',v.plate)+
    field('VIN','vin','text',v.vin,'',true)+field('Trenutni kilometri','km','number',v.km,'min="0" required')+
-   field('Servisni interval (km)','serviceInterval','number',v.serviceInterval||15000,'min="1000"')+
+   field('Servisni interval (km)','serviceInterval','number',v.serviceInterval||15000,'min="1000" inputmode="numeric"')+
+   field('Prostornina rezervoarja (l)','tankCapacity','number',v.tankCapacity||60,'min="10" step="1" inputmode="decimal"')+
    field('Zadnji servis pri km','lastServiceKm','number',v.lastServiceKm,'min="0"')+
    field('Registracija, zavarovanje in tehnični pregled do','vehicleDocumentsDate','date',v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection,'',true)+field('Vinjeta velja do','vignetteTo','date',v.vignetteTo,'',true)+select('Pnevmatike','tireType',['Letne','Zimske','Celoletne'],v.tireType||'Letne')+
    field('Dimenzija pnevmatik','tireSize','text',v.tireSize)+field('DOT / leto pnevmatik','tireDot','text',v.tireDot)
@@ -300,9 +302,12 @@ function openModal(type){
  ,'service')}
  if(type==='fuel'){title='Točenje goriva';html=formWrap(
    field('Datum','date','date',new Date().toISOString().slice(0,10),'required')+field('Kilometri','km','number',v.km||'','min="0" required')+
-   field('Cena skupaj (€)','cost','number','','step="0.01" min="0" required')+field('Cena na liter (€)','pricePerLiter','number','','step="0.001" min="0" required')+
-   field('Izračunani litri','liters','number','','step="0.01" readonly required')+select('Bencinska črpalka','station',['MOL','Petrol','OMV','INA','Shell','Ostalo'],'MOL')+
-   select('Poln rezervoar','fullTank',['Da','Ne'],'Da')+area('Opomba','note','')
+   select('Vrsta goriva','fuelType',['Dizel','NMB-95','NMB-100','Dizel Premium'],v.fuelType||'Dizel')+
+   field('Natočeni litri','liters','number','','step="0.01" min="0.01" required')+
+   field('Cena skupaj (€)','cost','number','','step="0.01" min="0.01" required')+field('Cena na liter (€)','pricePerLiter','number','','step="0.001" min="0" required')+
+   field('Poraba od prejšnjega polnega točenja','calculatedConsumption','text','','readonly')+select('Bencinska črpalka','station',['MOL','Petrol','OMV','INA','Shell','Ostalo'],'MOL')+
+   select('Poln rezervoar','fullTank',['Da','Ne'],'Da')+area('Opomba','note','')+
+   '<div class="field full"><div class="notice" id="fuelPriceStatus">Iščem aktualno ceno goriva …</div></div>'
  ,'fuel')}
  if(type==='expense'){title='Dodaj strošek';html=formWrap(
    field('Datum','date','date',new Date().toISOString().slice(0,10),'required')+
@@ -320,9 +325,19 @@ function openModal(type){
  const form=document.getElementById('dynamicForm'); form.innerHTML=html; form.onsubmit=handleSubmit;
  document.getElementById('modal').showModal();
  if(type==='fuel'){
-   const cost=form.elements.cost, price=form.elements.pricePerLiter, liters=form.elements.liters;
-   const calcLiters=()=>{const c=Number(cost.value),p=Number(price.value);liters.value=(c>0&&p>0)?(c/p).toFixed(2):''};
-   cost.addEventListener('input',calcLiters); price.addEventListener('input',calcLiters);
+   const cost=form.elements.cost, price=form.elements.pricePerLiter, liters=form.elements.liters, km=form.elements.km, full=form.elements.fullTank, fuelType=form.elements.fuelType, cons=form.elements.calculatedConsumption;
+   let priceManuallyChanged=false;
+   const calc=()=>{
+     const l=Number(String(liters.value).replace(',','.')), c=Number(String(cost.value).replace(',','.'));
+     if(l>0 && c>0 && !priceManuallyChanged) price.value=(c/l).toFixed(3);
+     const prev=[...data.fuel].filter(x=>x.fullTank==='Da'&&Number(x.km)<Number(km.value)).sort((a,b)=>Number(b.km)-Number(a.km))[0];
+     const dist=prev?Number(km.value)-Number(prev.km):0;
+     cons.value=(full.value==='Da'&&dist>0&&l>0)?(l/dist*100).toFixed(2)+' l/100 km':'—';
+   };
+   [cost,liters,km,full].forEach(el=>el.addEventListener('input',calc));
+   price.addEventListener('input',()=>{priceManuallyChanged=true});
+   fuelType.addEventListener('change',async()=>{priceManuallyChanged=false;await loadOnlineFuelPrice(fuelType.value,price);calc()});
+   loadOnlineFuelPrice(fuelType.value,price).then(calc); calc();
  }
 }
 function closeModal(){document.getElementById('modal').close()}
@@ -364,6 +379,29 @@ function healthDot(status){
   return `<span class="health-dot ${cls}" aria-label="${cls==='green'?'urejeno':cls==='red'?'potreben ukrep':'ni podatka'}"></span>`;
 }
 
+
+async function loadOnlineFuelPrice(type,input){
+ const status=document.getElementById('fuelPriceStatus');
+ const fallback={'Dizel':1.723,'NMB-95':1.588,'NMB-100':1.899,'Dizel Premium':1.874};
+ try{
+   const pages=await Promise.all([1,2,3].map(i=>fetch(`https://raw.githubusercontent.com/stefanb/goriva-data/master/data/search_page_${i}.json`,{cache:'no-store'}).then(r=>r.ok?r.json():null)));
+   const vals=[];
+   const walk=o=>{if(!o)return;if(Array.isArray(o))return o.forEach(walk);if(typeof o==='object'){const text=JSON.stringify(o).toLowerCase();for(const [k,v] of Object.entries(o)){if(typeof v==='number'&&v>.5&&v<3&&(/price|cena/.test(k.toLowerCase()))){if((type==='Dizel'&&text.includes('dizel')&&!text.includes('premium'))||(type==='NMB-95'&&(text.includes('nmb-95')||text.includes('95-okt')))||(type==='NMB-100'&&(text.includes('nmb-100')||text.includes('100-okt')))||(type==='Dizel Premium'&&text.includes('premium')))vals.push(v)}walk(v)}}};
+   pages.forEach(walk);
+   const value=vals.length?vals.sort((a,b)=>a-b)[Math.floor(vals.length/2)]:fallback[type];
+   input.value=Number(value).toFixed(3); if(status)status.textContent=`Spletni predlog: ${Number(value).toFixed(3)} €/l. Ceno lahko ročno popraviš.`;
+ }catch(e){input.value=Number(fallback[type]||0).toFixed(3);if(status)status.textContent='Spletna cena trenutno ni dosegljiva. Uporabljen je zadnji znani predlog; ceno lahko popraviš.'}
+}
+function fuelForecast(){
+ const full=[...data.fuel].filter(x=>x.fullTank==='Da'&&Number(x.km)>0&&Number(x.liters)>0).sort((a,b)=>Number(a.km)-Number(b.km));
+ const avg=calcAvgFuel(), v=data.vehicle||{}, cap=Number(v.tankCapacity||60), currentKm=Number(v.km||0);
+ if(!avg||!full.length)return null;
+ const last=full.at(-1), usedKm=Math.max(0,currentKm-Number(last.km)), usedLiters=usedKm*avg/100, remaining=Math.max(0,cap-usedLiters), range=Math.max(0,remaining/avg*100);
+ let daily=0;if(full.length>=2){const first=full[0], days=Math.max(1,(new Date(last.date)-new Date(first.date))/86400000);daily=Math.max(0,(Number(last.km)-Number(first.km))/days)}
+ const daysLeft=daily>0?Math.ceil(range/daily):null;const date=daysLeft!==null?new Date(Date.now()+daysLeft*86400000):null;
+ return {range,remaining,date};
+}
+
 function renderAll(){
  const v=data.vehicle||{}, name=[v.brand,v.model].filter(Boolean).join(' ')||'Dodaj svoje vozilo';
  heroName.textContent=name; heroMeta.textContent=[v.year,v.plate].filter(Boolean).join(' • ')||'Znamka, model, letnik in registracija';
@@ -375,6 +413,7 @@ function renderAll(){
 
  const totalYear=yearSum(); yearCost.textContent=money(totalYear); expenseYearCost.textContent=money(totalYear);
  const avg=calcAvgFuel(); avgFuel.textContent=avg?avg.toFixed(1):'—';
+ const forecast=fuelForecast(); fuelEmptyDate.textContent=forecast?.date?forecast.date.toLocaleDateString('sl-SI',{day:'2-digit',month:'2-digit'}):'—'; fuelRangeSmall.textContent=forecast?`še približno ${Math.round(forecast.range)} km (${forecast.remaining.toFixed(1)} l)`:'Potrebni sta vsaj dve polni točenji';
  const future=data.reminders.filter(r=>daysTo(r.date)>=0).sort((a,b)=>a.date.localeCompare(b.date)); reminderCount.textContent=future.length;
  homeReminders.innerHTML=future.slice(0,4).map(reminderHTML).join('')||empty('Ni prihajajočih opomnikov.');
 
@@ -402,7 +441,7 @@ function renderAll(){
 function sortDate(a,b){return b.date.localeCompare(a.date)}
 function empty(t){return `<div class="empty">${t}</div>`}
 function serviceHTML(x){return `<div class="item"><div class="item-icon">🔧</div><div class="item-main"><div class="item-title">${esc(x.category)}</div><div class="item-meta">${fmtDate(x.date)} • ${Number(x.km||0).toLocaleString('sl-SI')} km${x.provider?' • '+esc(x.provider):''}<br>${esc(x.note||'')}</div></div><div class="item-amount">${money(x.cost)}<br><button class="btn small danger" onclick="del('services','${x.id}')">Izbriši</button></div></div>`}
-function fuelHTML(x){let ppl=Number(x.pricePerLiter)||(Number(x.cost)/Number(x.liters));return `<div class="item"><div class="item-icon">⛽</div><div class="item-main"><div class="item-title">${Number(x.liters).toLocaleString('sl-SI')} l • ${esc(x.station||'Črpalka ni vpisana')}</div><div class="item-meta">${fmtDate(x.date)} • ${Number(x.km||0).toLocaleString('sl-SI')} km • ${ppl?ppl.toFixed(3)+' €/l':''}</div></div><div class="item-amount">${money(x.cost)}<br><button class="btn small danger" onclick="del('fuel','${x.id}')">Izbriši</button></div></div>`}
+function fuelHTML(x){let ppl=Number(x.pricePerLiter)||(Number(x.cost)/Number(x.liters));const a=[...data.fuel].filter(y=>y.fullTank==='Da'&&Number(y.km)<Number(x.km)).sort((a,b)=>Number(b.km)-Number(a.km));const dist=a[0]?Number(x.km)-Number(a[0].km):0;const cons=(x.fullTank==='Da'&&dist>0)?Number(x.liters)/dist*100:null;return `<div class="item"><div class="item-icon">⛽</div><div class="item-main"><div class="item-title">${Number(x.liters).toLocaleString('sl-SI')} l • ${esc(x.station||'Črpalka ni vpisana')}</div><div class="item-meta">${fmtDate(x.date)} • ${Number(x.km||0).toLocaleString('sl-SI')} km • ${ppl?ppl.toFixed(3)+' €/l':''}${cons?' • poraba '+cons.toFixed(2)+' l/100 km':''}</div></div><div class="item-amount">${money(x.cost)}<br><button class="btn small danger" onclick="del('fuel','${x.id}')">Izbriši</button></div></div>`}
 function expenseHTML(x){return `<div class="item"><div class="item-icon">🧾</div><div class="item-main"><div class="item-title">${esc(x.category)}</div><div class="item-meta">${fmtDate(x.date)}${x.km?' • '+Number(x.km).toLocaleString('sl-SI')+' km':''}<br>${esc(x.note||'')}</div></div><div class="item-amount">${money(x.cost)}<br><button class="btn small danger" onclick="del('expenses','${x.id}')">Izbriši</button></div></div>`}
 function reminderHTML(x){let d=daysTo(x.date), cls=d<0?'red':d<=14?'orange':'green';return `<div class="item"><div class="item-icon">🔔</div><div class="item-main"><div class="item-title">${esc(x.title)}</div><div class="item-meta">${fmtDate(x.date)} • ${esc(x.category)}</div></div><span class="badge ${cls}">${d===0?'danes':d===1?'jutri':d>=0?'čez '+d+' dni':'poteklo'}</span></div>`}
 function reminderHTMLFull(x){return reminderHTML(x).replace('</div>','<br><button class="btn small danger" onclick="del(\'reminders\',\''+x.id+'\')">Izbriši</button></div>')}
@@ -478,6 +517,20 @@ function renderHealth(){
  healthList.innerHTML=lines.map(x=>`<div class="health-line">${healthDot(x.status)}<span>${x.name}</span></div>`).join('');
 }
 
+function exportPDF(){
+ const v=data.vehicle||{};
+ const rows=(items,cols)=>items.length?items.map(x=>`<tr>${cols.map(c=>`<td>${esc(c(x))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}">Ni podatkov.</td></tr>`;
+ const html=`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>MojAvto poročilo</title><style>
+ @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111;margin:0;font-size:11px}h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;margin:20px 0 7px;border-bottom:2px solid #222;padding-bottom:4px}.meta{color:#555;margin-bottom:15px}.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.box{border:1px solid #bbb;border-radius:8px;padding:8px}.box b{display:block;font-size:12px;margin-bottom:3px}table{width:100%;border-collapse:collapse;page-break-inside:auto}tr{page-break-inside:avoid}th,td{border:1px solid #bbb;padding:5px;text-align:left;vertical-align:top}th{background:#eee}.footer{margin-top:18px;color:#666;font-size:9px;text-align:center}@media print{button{display:none}}
+ </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.5.5</div>
+ <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Dokumenti veljajo do</b>${fmtDate(v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
+ <h2>Servisi in vzdrževanje</h2><table><thead><tr><th>Datum</th><th>Vrsta</th><th>Km</th><th>Izvajalec/opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.services].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>[x.provider,x.note].filter(Boolean).join(' – '),x=>money(x.cost)])}</tbody></table>
+ <h2>Gorivo</h2><table><thead><tr><th>Datum</th><th>Črpalka</th><th>Km</th><th>Litri</th><th>Znesek</th></tr></thead><tbody>${rows([...data.fuel].sort(sortDate),[x=>fmtDate(x.date),x=>x.station||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>Number(x.liters||0).toLocaleString('sl-SI'),x=>money(x.cost)])}</tbody></table>
+ <h2>Stroški</h2><table><thead><tr><th>Datum</th><th>Kategorija</th><th>Km</th><th>Opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.expenses].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>x.km?Number(x.km).toLocaleString('sl-SI'):'',x=>x.note||'',x=>money(x.cost)])}</tbody></table>
+ <h2>Opomniki</h2><table><thead><tr><th>Datum</th><th>Naslov</th><th>Vrsta</th><th>Opomba</th></tr></thead><tbody>${rows([...data.reminders].sort(sortDate),[x=>fmtDate(x.date),x=>x.title||'',x=>x.category||'',x=>x.note||''])}</tbody></table>
+ <div class="footer">MojAvto by Davor Gričnik © 2026</div><script>window.onload=()=>setTimeout(()=>window.print(),250)<\/script></body></html>`;
+ const w=window.open('','_blank');if(!w){alert('Brskalnik je blokiral okno za PDF. Dovoli pojavna okna in poskusi znova.');return}w.document.open();w.document.write(html);w.document.close();
+}
 function exportJSON(){download('moj-avto-varnostna-kopija.json',JSON.stringify(data,null,2),'application/json')}
 function exportCSV(){
  let rows=[['Vrsta','Datum','Kategorija','Kilometri','Znesek','Opis']];

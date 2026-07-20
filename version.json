@@ -1,5 +1,4 @@
 {
-  "app": "MojAvto",
-  "version": "1.5.3",
-  "publishedAt": "2026-07-17"
+  "version": "1.5.5",
+  "build": "manual-1.5.5"
 }

@@ -1,0 +1,10 @@
+MOJAVTO 1.5.4 – SAMODEJNA POSODOBITEV
+
+1. V GitHub naložite VSE datoteke iz te mape, vključno z mapo .github.
+2. Secret FIREBASE_SERVICE_ACCOUNT mora ostati nastavljen. Staro/neveljavno skrivnost izbrišite; v GitHubu naj bo samo ena skrivnost s tem imenom.
+3. Vsak push v vejo main ali master sproži Firebase deploy.
+4. Workflow ob vsakem nalaganju sam ustvari unikatni build ID. Zato ročno zviševanje version.json ni potrebno za zaznavo posodobitve.
+5. Odprta PWA preveri novo izdajo ob zagonu, vrnitvi v aplikacijo, fokusu okna in vsakih 5 minut. Ko zazna novo izdajo, jo samodejno naloži.
+6. V razdelku Več je dodan gumb Izvoz PDF. Odpre natisljivo A4 poročilo; v sistemskem oknu izberite Shrani kot PDF.
+
+Pomembno: datoteki sw.js in update-manager.js ne odstranjujte.

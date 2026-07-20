@@ -1,0 +1,8 @@
+MojAvto 1.5.5
+
+- Izračun porabe med zaporednima polnima točenjema.
+- Ocena preostalega dosega in datuma praznega rezervoarja.
+- Nastavljiva prostornina rezervoarja v podatkih vozila.
+- Numerična tipkovnica pri številskih poljih.
+- Pri točenju se vpišejo litri in skupni znesek; cena/l se izračuna samodejno.
+- Spletni predlog aktualne cene goriva z možnostjo ročnega popravka.
