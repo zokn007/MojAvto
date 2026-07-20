@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html data-app-version="1.5.8" data-build-id="manual-1.5.8" lang="sl">
+<html data-app-version="1.5.9" data-build-id="manual-1.5.9" lang="sl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.6.2" />
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.5.8" />
   <title>MojAvto</title>
 <link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
 <link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
@@ -30,7 +30,7 @@
     .logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,#38bdf8,#2563eb);display:grid;place-items:center;box-shadow:var(--shadow);font-size:25px}
     h1{font-size:23px;margin:0}.sub{color:var(--muted);font-size:13px;margin-top:3px}
     .chip{border:1px solid var(--line);background:#0d1928;color:var(--text);border-radius:999px;padding:9px 12px}
-    .hero{position:relative;overflow:hidden;background-image:linear-gradient(90deg,rgba(4,12,24,.94) 0%,rgba(4,12,24,.76) 45%,rgba(4,12,24,.34) 72%,rgba(4,12,24,.56) 100%),var(--hero-bg, url("peugeot-508-sw.jpg"));background-size:cover;background-position:center 57%;border:1px solid #3b5068;border-radius:24px;padding:24px 20px;box-shadow:var(--shadow);margin-bottom:15px;min-height:245px;display:flex;flex-direction:column;justify-content:flex-end}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.15) 55%,rgba(0,0,0,.72));pointer-events:none}.hero>*{position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+    .hero{position:relative;overflow:hidden;background-image:linear-gradient(90deg,rgba(4,12,24,.94) 0%,rgba(4,12,24,.76) 45%,rgba(4,12,24,.34) 72%,rgba(4,12,24,.56) 100%),url("peugeot-508-sw.jpg");background-size:cover;background-position:center 57%;border:1px solid #3b5068;border-radius:24px;padding:24px 20px;box-shadow:var(--shadow);margin-bottom:15px;min-height:245px;display:flex;flex-direction:column;justify-content:flex-end}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.15) 55%,rgba(0,0,0,.72));pointer-events:none}.hero>*{position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.9)}
     .hero-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:14px}
     .vehicle-name{font-size:28px;font-weight:800}.vehicle-meta{color:#b9cae0;margin-top:5px}
     .km{font-size:34px;font-weight:900;text-align:right}.km small{display:block;font-size:12px;color:var(--muted);font-weight:500}
@@ -64,13 +64,11 @@
     .chart{height:210px;padding:10px 4px 22px}.chart-title{font-size:14px;font-weight:800;margin-bottom:4px}.chart-sub{font-size:11px;color:var(--muted);margin-bottom:8px}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}.metric{background:#122238;border:1px solid var(--line);border-radius:15px;padding:12px}.metric b{display:block;font-size:18px;margin-top:4px}.health{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:center}.health-ring{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#22c55e var(--health),#26384f 0);position:relative}.health-ring:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#101d2e}.health-ring strong{position:relative;z-index:1;font-size:22px}.health-list{display:grid;gap:7px}.health-line{display:flex;justify-content:space-between;font-size:12px}.home-costs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.home-costs .metric{text-align:center}@media(max-width:760px){.metric-row,.home-costs{grid-template-columns:repeat(2,1fr)}}.chart-grid line{stroke:#29405a;stroke-width:1}.chart-grid text,.chart-points text{fill:#9fb0c5;font-size:10px}.chart-line{fill:none;stroke:#38bdf8;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.chart-points circle{fill:#fff;stroke:#2563eb;stroke-width:4}
     .notice{padding:12px 14px;border-radius:14px;background:#1f3045;border-left:4px solid #38bdf8;color:#dcecff;margin-bottom:10px}
 
-    .hero-bg-button{position:absolute;right:12px;top:12px;z-index:4;border:1px solid rgba(255,255,255,.28);background:rgba(4,12,24,.72);color:#fff;border-radius:13px;padding:9px 11px;font-size:12px;font-weight:800;backdrop-filter:blur(8px)}.hero-bg-button:active{transform:scale(.96)}
     .hero-appname{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:2;background:rgba(4,12,24,.76);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:8px 15px;font-size:13px;font-weight:850;text-align:center;white-space:nowrap;text-shadow:none;backdrop-filter:blur(8px)}
     .hero-health{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin:12px 0 2px;padding:10px 12px;background:rgba(4,12,24,.67);border:1px solid rgba(255,255,255,.16);border-radius:17px;text-shadow:none;backdrop-filter:blur(8px)}
     .hero-health .health-ring{width:62px;height:62px}.hero-health .health-ring:after{inset:7px;background:rgba(7,17,31,.96)}.hero-health .health-ring strong{font-size:16px}.hero-health .health-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 12px}.hero-health .health-line{font-size:10px;gap:6px}.hero-health .health-line b{text-align:right}
-    @media(max-width:520px){.hero-health .health-list{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-bg-button{position:absolute;right:12px;top:12px;z-index:4;border:1px solid rgba(255,255,255,.28);background:rgba(4,12,24,.72);color:#fff;border-radius:13px;padding:9px 11px;font-size:12px;font-weight:800;backdrop-filter:blur(8px)}.hero-bg-button:active{transform:scale(.96)}
-    .hero-appname{font-size:10px;max-width:calc(100% - 24px);white-space:normal;width:max-content}}
-    @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.home-main-stats{grid-template-columns:1fr 1fr}.home-main-stats .stat:last-child{grid-column:1/-1}.hero{min-height:285px;background-position:58% center}.hero-grid{grid-template-columns:1fr}.km{text-align:left}.quick{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.hero-health .health-list{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-appname{font-size:10px;max-width:calc(100% - 24px);white-space:normal;width:max-content}}
+    @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:285px;background-position:58% center}.hero-grid{grid-template-columns:1fr}.km{text-align:left}.quick{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:480px){.app{padding-left:10px;padding-right:10px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.nav button{font-size:9px}.nav button span{font-size:19px}.vehicle-name{font-size:23px}}
   
 /* v1.4.5 */
@@ -111,40 +109,39 @@
 #appSplash.splash-hidden{opacity:0;visibility:hidden;pointer-events:none}.splash-inner{width:min(80vw,340px);text-align:center}.splash-icon{width:min(62vw,230px);height:min(62vw,230px);border-radius:25%;object-fit:cover;box-shadow:0 24px 70px rgba(0,0,0,.55)}
 .splash-name{margin-top:20px;font-size:29px;font-weight:900}.splash-sub{margin-top:6px;color:#c9d2df;font-size:14px;letter-spacing:.7px}.splash-credit{margin-top:25px;color:#8794a7;font-size:11px;line-height:1.55}
 
-
-
-.more-sync-card{overflow:hidden;padding:22px}
-.sync-main-title{font-size:24px;font-weight:900;line-height:1.18;margin:0 0 12px;color:var(--text)}
-.sync-description{font-size:14px;line-height:1.55;color:var(--muted);margin-bottom:18px}
-.sync-status-banner{border-radius:16px;padding:15px 16px;margin-bottom:14px;background:#e6f5ee;color:#167349;font-weight:800;font-size:14px}
-.sync-status-banner.off{background:rgba(255,255,255,.07);color:var(--muted);border:1px solid rgba(255,255,255,.09)}
-.sync-status-banner.warn{background:#fff0d9;color:#8a5100}.sync-status-banner.error{background:#ffe3e3;color:#a61b1b}
-.sync-account{display:none;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);padding:14px;border-radius:16px;margin:0 0 12px}
-.sync-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#dbe8f0}.sync-user-name{font-weight:850}.sync-user-email{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
-.sync-info{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}.sync-info-box{border-radius:16px;padding:14px;background:#f4f8fb;color:#1f2937}.sync-info-box span{display:block;color:#6b7280;font-size:12px;margin-bottom:5px}.sync-info-box strong{font-size:14px;overflow-wrap:anywhere}
-.sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sync-actions .btn{width:100%;min-height:52px;justify-content:center;text-align:center}.sync-actions .wide{grid-column:1/-1}.sync-login{width:100%;min-height:54px;background:#fff!important;color:#1f2937!important;border:1px solid #d0d5dd!important;font-weight:850!important}.google-g{font-weight:950;color:#4285f4;margin-right:8px;font-size:18px}
-.sync-message{display:none;margin-top:12px;padding:12px 14px;border-radius:13px;font-size:13px;line-height:1.45;background:#fff0d9;color:#8a5100}.sync-message.error{background:#ffe3e3;color:#a61b1b}
-@media(max-width:430px){.more-sync-card{padding:18px}.sync-main-title{font-size:22px}.sync-actions{grid-template-columns:1fr 1fr}.sync-actions .btn{font-size:13px;padding:10px 7px}}
-
 </style>
 
 <!-- DG Cloud Sync: Firebase Authentication + Cloud Firestore -->
 <script>window.DG_CLOUD_CONFIG={"appId": "mojavto", "appName": "MojAvto", "keys": ["mojAvtoV1"], "prefixes": ["service-notified-"]};</script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="/__/firebase/12.16.0/firebase-app-compat.js"></script>
+<script src="/__/firebase/12.16.0/firebase-auth-compat.js"></script>
+<script src="/__/firebase/12.16.0/firebase-firestore-compat.js"></script>
 <script src="/__/firebase/init.js"></script>
-<script src="cloud-sync.js?v=1.6.2"></script>
+<script src="cloud-sync.js"></script>
 </head>
 <body>
 <div id="appSplash" aria-label="MojAvto se nalaga"><div class="splash-inner"><img class="splash-icon" src="mojavto-icon.jpeg" alt="MojAvto"><div class="splash-name">MojAvto</div><div class="splash-sub">DG Smart app</div><div class="splash-credit">Designed &amp; Developed<br>by Davor Gričnik © 2026</div></div></div>
+<script>
+// Neodvisno varovalo: splash se odstrani tudi ob napaki v glavni aplikaciji.
+(() => {
+  const hideSplash = () => {
+    const splash = document.getElementById('appSplash');
+    if (!splash) return;
+    splash.classList.add('splash-hidden');
+    setTimeout(() => splash.remove(), 500);
+  };
+  window.__hideMojAvtoSplash = hideSplash;
+  setTimeout(hideSplash, 1800);
+  window.addEventListener('load', () => setTimeout(hideSplash, 500), {once:true});
+  window.addEventListener('error', () => setTimeout(hideSplash, 100));
+  window.addEventListener('unhandledrejection', () => setTimeout(hideSplash, 100));
+})();
+</script>
 <div class="app">
 
   <main>
     <section id="home" class="section active">
-<div class="hero" id="homeHero">
-        <button type="button" class="hero-bg-button" onclick="chooseHeroBackground()">🖼️ Spremeni ozadje</button>
-        <input id="heroBackgroundInput" type="file" accept="image/*" hidden onchange="importHeroBackground(event)">
+<div class="hero">
 <div class="hero-grid">
           <div><div class="vehicle-name" id="heroName">Dodaj svoje vozilo</div><div class="vehicle-meta" id="heroMeta">Znamka, model, letnik in registracija</div></div>
           <div class="km" id="heroKm">0 km<small>trenutno stanje</small></div>
@@ -158,11 +155,11 @@
         </div>
       </div>
 
-      <div class="grid home-main-stats">
+      <div class="grid">
         <div class="card stat"><div class="icon">🛠️</div><div class="label">Naslednji servis</div><div class="value" id="nextService">—</div><div class="small" id="nextServiceSmall">ni podatka</div></div>
         <div class="card stat"><div class="icon">⛽</div><div class="label">Povpr. poraba</div><div class="value" id="avgFuel">—</div><div class="small">l/100 km</div></div>
         <div class="card stat"><div class="icon">💶</div><div class="label">Stroški letos</div><div class="value" id="yearCost">0 €</div><div class="small">vsi vnosi</div></div>
-
+        <div class="card stat"><div class="icon">⛽</div><div class="label">Predvidoma prazen</div><div class="value" id="fuelEmptyDate">—</div><div class="small" id="fuelRangeSmall">ni podatka</div></div>
       </div>
       <div class="section-title"><h2>Stroški vozila</h2></div>
       <div class="home-costs">
@@ -232,36 +229,9 @@
     <section id="more" class="section">
 <div class="section-title"><h2>Opomniki</h2><button class="btn primary" onclick="openModal('reminder')">+ Dodaj</button></div>
       <div id="reminderList" class="list"></div>
-      <div class="section-title"><h2>Google sinhronizacija</h2></div>
-      <div class="card more-sync-card">
-        <h3 class="sync-main-title">Firebase – sinhronizacija in varnostne kopije</h3>
-        <div class="sync-description">Prijavi se z istim Google računom na vseh napravah. Spremembe se nato samodejno prenašajo med telefonom, tablico in računalnikom.</div>
-        <div id="syncStatusBanner" class="sync-status-banner off">Preverjanje prijave …</div>
-        <div id="syncSignedOut">
-          <button id="moreCloudLogin" type="button" class="btn sync-login"><span class="google-g">G</span> Prijava z Googlom</button>
-        </div>
-        <div id="syncSignedIn" style="display:none">
-          <div id="syncAccount" class="sync-account">
-            <img id="syncAvatar" class="sync-avatar" alt="Google račun">
-            <div><div id="syncUserName" class="sync-user-name">Uporabnik</div><div id="syncUserEmail" class="sync-user-email"></div></div>
-          </div>
-          <div class="sync-info">
-            <div class="sync-info-box"><span>Zadnja sinhronizacija</span><strong id="syncLastTime">Še nikoli</strong></div>
-            <div class="sync-info-box"><span>Naprava</span><strong id="syncDeviceName">Ta naprava</strong></div>
-          </div>
-          <div class="sync-actions">
-            <button id="moreCloudSyncNow" type="button" class="btn primary">Sinhroniziraj zdaj</button>
-            <button id="moreCloudRestore" type="button" class="btn">Obnovi iz oblaka</button>
-            <button id="moreCloudExport" type="button" class="btn">Izvozi kopijo</button>
-            <label class="btn" style="display:flex;align-items:center;cursor:pointer">Obnovi iz datoteke<input id="moreCloudImport" type="file" accept="application/json,.json" hidden></label>
-            <button id="moreCloudLogout" type="button" class="btn danger wide">Odjava</button>
-          </div>
-        </div>
-        <div id="syncMessage" class="sync-message"></div>
-      </div>
       <div class="section-title"><h2>Podatki in varnost</h2></div>
       <div class="card">
-        <div class="notice">Podatki se hranijo lokalno. Ko je Google sinhronizacija vključena, se samodejno varnostno kopirajo tudi v oblak.</div>
+        <div class="notice">Podatki so shranjeni samo v tej napravi in brskalniku. Redno naredi varnostno kopijo.</div>
         <div style="display:flex;flex-wrap:wrap;gap:9px">
           <button class="btn" onclick="exportJSON()">Varnostna kopija JSON</button>
           <button class="btn" onclick="exportCSV()">Izvoz CSV</button>
@@ -272,7 +242,7 @@
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.6.2</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.5.8</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -348,16 +318,15 @@ function openModal(type){
  ,'service')}
  if(type==='fuel'){title='Točenje goriva';html=formWrap(
    field('Natočeni litri','liters','number','','step="0.01" min="0.01" inputmode="decimal" required')+
-   field('Kilometri na vozilu','km','number',v.km||'','min="0" inputmode="numeric" required')+
-   select('Vrsta goriva','fuelType',['Dizel','NMB-95','NMB-100','Dizel Premium'],v.fuelType||'Dizel')+
-   field('Cena na liter (€)','pricePerLiter','number','','step="0.001" min="0" inputmode="decimal" required')+
-   field('Skupni znesek (€)','cost','number','','step="0.01" min="0" inputmode="decimal" required')+
    '<input type="hidden" name="date" value="'+new Date().toISOString().slice(0,10)+'">'+
+   '<input type="hidden" name="km" value="'+esc(v.km||0)+'">'+
+   '<input type="hidden" name="fuelType" value="'+esc(v.fuelType||'Dizel')+'">'+
    '<input type="hidden" name="station" value="MOL">'+
    '<input type="hidden" name="fullTank" value="Da">'+
-   '<div class="field full"><button type="button" class="btn primary" id="fetchFuelPriceBtn" style="width:100%;min-height:50px">⛽ Pridobi podatke o ceni goriva</button></div>'+
-   '<div class="field full"><div class="notice" id="fuelCalcSummary">Vnesi litre in kilometre. Znesek se izračuna iz cene na liter, oba podatka pa lahko ročno popraviš.</div></div>'+
-   '<div class="field full"><div class="notice" id="fuelPriceStatus">Cena še ni bila pridobljena. Pritisni gumb zgoraj.</div></div>'
+   '<input type="hidden" name="cost" value="">'+
+   '<input type="hidden" name="pricePerLiter" value="">'+
+   '<div class="field full"><div class="notice" id="fuelCalcSummary">Vnesi litre. Cena, skupni znesek in poraba se izračunajo samodejno.</div></div>'+
+   '<div class="field full"><div class="notice" id="fuelPriceStatus">Iščem aktualno ceno goriva …</div></div>'
  ,'fuel')}
  if(type==='expense'){title='Dodaj strošek';html=formWrap(
    field('Datum','date','date',new Date().toISOString().slice(0,10),'required')+
@@ -377,40 +346,17 @@ function openModal(type){
  if(type==='fuel'){
    const cost=form.elements.cost, price=form.elements.pricePerLiter, liters=form.elements.liters, km=form.elements.km, fuelType=form.elements.fuelType;
    const summary=document.getElementById('fuelCalcSummary');
-   let editingCost=false;
-   const numberOf=el=>Number(String(el.value||'').replace(',','.'));
-   const updateSummary=()=>{
-     const l=numberOf(liters), p=numberOf(price), c=numberOf(cost), currentKm=numberOf(km);
-     const prev=[...data.fuel].filter(x=>x.fullTank==='Da'&&Number(x.km)<currentKm).sort((a,b)=>Number(b.km)-Number(a.km))[0];
-     const dist=prev?currentKm-Number(prev.km):0;
+   const calc=()=>{
+     const l=Number(String(liters.value).replace(',','.')), p=Number(String(price.value).replace(',','.'));
+     cost.value=(l>0&&p>0)?(l*p).toFixed(2):'';
+     const prev=[...data.fuel].filter(x=>x.fullTank==='Da'&&Number(x.km)<Number(km.value)).sort((a,b)=>Number(b.km)-Number(a.km))[0];
+     const dist=prev?Number(km.value)-Number(prev.km):0;
      const consumption=(dist>0&&l>0)?(l/dist*100):null;
-     summary.textContent=l>0?`${p>0?'Cena '+p.toFixed(3)+' €/l • ':''}${c>0?'skupaj '+c.toFixed(2)+' €':''}${consumption?` • poraba ${consumption.toFixed(2)} l/100 km`:''}`:'Vnesi litre in kilometre. Znesek se izračuna iz cene na liter, oba podatka pa lahko ročno popraviš.';
+     summary.textContent=l>0&&p>0?`Cena ${p.toFixed(3)} €/l • skupaj ${Number(cost.value).toFixed(2)} €${consumption?` • poraba ${consumption.toFixed(2)} l/100 km`:''}`:'Vnesi litre. Cena, skupni znesek in poraba se izračunajo samodejno.';
    };
-   const calcCost=()=>{if(!editingCost){const l=numberOf(liters),p=numberOf(price);cost.value=(l>0&&p>0)?(l*p).toFixed(2):'';}updateSummary();};
-   const calcPriceFromCost=()=>{const l=numberOf(liters),c=numberOf(cost);if(l>0&&c>0)price.value=(c/l).toFixed(3);updateSummary();};
-   liters.addEventListener('input',()=>{editingCost=false;calcCost()});
-   price.addEventListener('input',()=>{editingCost=false;calcCost()});
-   cost.addEventListener('input',()=>{editingCost=true;calcPriceFromCost()});
-   km.addEventListener('input',updateSummary);
-   fuelType.addEventListener('change',()=>{document.getElementById('fuelPriceStatus').textContent='Vrsta goriva je spremenjena. Za novo ceno pritisni gumb.'});
-   document.getElementById('fetchFuelPriceBtn').addEventListener('click',async()=>{editingCost=false;await loadOnlineFuelPrice(fuelType.value,price);calcCost();});
-   updateSummary();
+   liters.addEventListener('input',calc);
+   loadOnlineFuelPrice(fuelType.value,price).then(calc); calc();
  }
-}
-}
-
-function chooseHeroBackground(){document.getElementById('heroBackgroundInput').click()}
-function importHeroBackground(event){
- const file=event.target.files&&event.target.files[0]; if(!file)return;
- if(!file.type.startsWith('image/')){alert('Izberi slikovno datoteko.');return}
- const reader=new FileReader(); reader.onload=()=>{
-   const img=new Image(); img.onload=()=>{
-     const maxW=1600,maxH=1000,scale=Math.min(1,maxW/img.width,maxH/img.height);
-     const canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);
-     canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
-     data.vehicle=data.vehicle||{};data.vehicle.backgroundImage=canvas.toDataURL('image/jpeg',0.78);save();
-   };img.src=reader.result;
- };reader.readAsDataURL(file);event.target.value='';
 }
 function closeModal(){document.getElementById('modal').close()}
 function handleSubmit(e){
@@ -422,7 +368,6 @@ function handleSubmit(e){
     fd.insurance=fd.vehicleDocumentsDate;
     fd.inspection=fd.vehicleDocumentsDate;
   }
-  fd.backgroundImage=data.vehicle.backgroundImage||'';
   data.vehicle=fd
 }
  else{fd.id=uid(); data[type==='service'?'services':type==='fuel'?'fuel':type==='expense'?'expenses':'reminders'].push(fd);
@@ -455,26 +400,15 @@ function healthDot(status){
 
 async function loadOnlineFuelPrice(type,input){
  const status=document.getElementById('fuelPriceStatus');
- if(status)status.textContent='Pridobivam aktualne podatke o ceni goriva …';
- const keyMap={'Dizel':'dizel','NMB-95':'95','NMB-100':'100','Dizel Premium':'dizel-premium'};
+ const fallback={'Dizel':1.723,'NMB-95':1.588,'NMB-100':1.899,'Dizel Premium':1.874};
  try{
-   const pages=await Promise.all([1,2,3].map(i=>fetch(`https://raw.githubusercontent.com/stefanb/goriva-data/master/data/search_page_${i}.json?t=${Date.now()}`,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})));
-   const fuelKey=keyMap[type]||'dizel';
-   const stations=pages.flatMap(page=>Array.isArray(page?.results)?page.results:[]);
-   const mol=stations.filter(s=>/\bMOL\b/i.test(s.name||'')&&Number(s?.prices?.[fuelKey])>0).map(s=>Number(s.prices[fuelKey]));
-   const all=stations.filter(s=>Number(s?.prices?.[fuelKey])>0).map(s=>Number(s.prices[fuelKey]));
-   const vals=mol.length?mol:all;
-   if(!vals.length)throw new Error('Ni cen za izbrano gorivo');
-   const counts=new Map(); vals.forEach(v=>counts.set(v,(counts.get(v)||0)+1));
-   const value=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0]-b[0])[0][0];
-   input.value=Number(value).toFixed(3);
-   localStorage.setItem('lastFuelPrice-'+type,input.value);
-   if(status)status.textContent=`Aktualna ${mol.length?'MOL ':''}cena je ${Number(value).toFixed(3)} €/l. Ceno in skupni znesek lahko pred shranjevanjem ročno popraviš.`;
- }catch(e){
-   const cached=localStorage.getItem('lastFuelPrice-'+type);
-   if(cached)input.value=Number(cached).toFixed(3);
-   if(status)status.textContent=cached?'Spletni podatki trenutno niso dosegljivi. Prikazana je zadnja uspešno pridobljena cena, ki jo lahko popraviš.':'Spletni podatki trenutno niso dosegljivi. Ceno vnesi ročno.';
- }
+   const pages=await Promise.all([1,2,3].map(i=>fetch(`https://raw.githubusercontent.com/stefanb/goriva-data/master/data/search_page_${i}.json`,{cache:'no-store'}).then(r=>r.ok?r.json():null)));
+   const vals=[];
+   const walk=o=>{if(!o)return;if(Array.isArray(o))return o.forEach(walk);if(typeof o==='object'){const text=JSON.stringify(o).toLowerCase();for(const [k,v] of Object.entries(o)){if(typeof v==='number'&&v>.5&&v<3&&(/price|cena/.test(k.toLowerCase()))){if((type==='Dizel'&&text.includes('dizel')&&!text.includes('premium'))||(type==='NMB-95'&&(text.includes('nmb-95')||text.includes('95-okt')))||(type==='NMB-100'&&(text.includes('nmb-100')||text.includes('100-okt')))||(type==='Dizel Premium'&&text.includes('premium')))vals.push(v)}walk(v)}}};
+   pages.forEach(walk);
+   const value=vals.length?vals.sort((a,b)=>a-b)[Math.floor(vals.length/2)]:fallback[type];
+   input.value=Number(value).toFixed(3); if(status)status.textContent=`Spletni predlog: ${Number(value).toFixed(3)} €/l. Ceno lahko ročno popraviš.`;
+ }catch(e){input.value=Number(fallback[type]||0).toFixed(3);if(status)status.textContent='Spletna cena trenutno ni dosegljiva. Uporabljen je zadnji znani predlog; ceno lahko popraviš.'}
 }
 function fuelForecast(){
  const full=[...data.fuel].filter(x=>x.fullTank==='Da'&&Number(x.km)>0&&Number(x.liters)>0).sort((a,b)=>Number(a.km)-Number(b.km));
@@ -488,7 +422,6 @@ function fuelForecast(){
 
 function renderAll(){
  const v=data.vehicle||{}, name=[v.brand,v.model].filter(Boolean).join(' ')||'Dodaj svoje vozilo';
- const hero=document.getElementById('homeHero'); if(hero) hero.style.setProperty('--hero-bg',v.backgroundImage?`linear-gradient(90deg,rgba(4,12,24,.94) 0%,rgba(4,12,24,.76) 45%,rgba(4,12,24,.34) 72%,rgba(4,12,24,.56) 100%),url("${v.backgroundImage}")`:'linear-gradient(90deg,rgba(4,12,24,.94) 0%,rgba(4,12,24,.76) 45%,rgba(4,12,24,.34) 72%,rgba(4,12,24,.56) 100%),url("peugeot-508-sw.jpg")');
  heroName.textContent=name; heroMeta.textContent=[v.year,v.plate].filter(Boolean).join(' • ')||'Znamka, model, letnik in registracija';
  heroKm.innerHTML=`${Number(v.km||0).toLocaleString('sl-SI')} km<small>trenutno stanje</small>`;
  const interval=Number(v.serviceInterval||15000), since=Math.max(0,Number(v.km||0)-Number(v.lastServiceKm||0)), left=Math.max(0,interval-since);
@@ -498,6 +431,7 @@ function renderAll(){
 
  const totalYear=yearSum(); yearCost.textContent=money(totalYear); expenseYearCost.textContent=money(totalYear);
  const avg=calcAvgFuel(); avgFuel.textContent=avg?avg.toFixed(1):'—';
+ const forecast=fuelForecast(); fuelEmptyDate.textContent=forecast?.date?forecast.date.toLocaleDateString('sl-SI',{day:'2-digit',month:'2-digit'}):'—'; fuelRangeSmall.textContent=forecast?`še približno ${Math.round(forecast.range)} km (${forecast.remaining.toFixed(1)} l)`:'Potrebni sta vsaj dve polni točenji';
  const future=data.reminders.filter(r=>daysTo(r.date)>=0).sort((a,b)=>a.date.localeCompare(b.date)); reminderCount.textContent=future.length;
  homeReminders.innerHTML=future.slice(0,4).map(reminderHTML).join('')||empty('Ni prihajajočih opomnikov.');
 
@@ -606,7 +540,7 @@ function exportPDF(){
  const rows=(items,cols)=>items.length?items.map(x=>`<tr>${cols.map(c=>`<td>${esc(c(x))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}">Ni podatkov.</td></tr>`;
  const html=`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>MojAvto poročilo</title><style>
  @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111;margin:0;font-size:11px}h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;margin:20px 0 7px;border-bottom:2px solid #222;padding-bottom:4px}.meta{color:#555;margin-bottom:15px}.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.box{border:1px solid #bbb;border-radius:8px;padding:8px}.box b{display:block;font-size:12px;margin-bottom:3px}table{width:100%;border-collapse:collapse;page-break-inside:auto}tr{page-break-inside:avoid}th,td{border:1px solid #bbb;padding:5px;text-align:left;vertical-align:top}th{background:#eee}.footer{margin-top:18px;color:#666;font-size:9px;text-align:center}@media print{button{display:none}}
- </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.6.2</div>
+ </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.5.8</div>
  <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Dokumenti veljajo do</b>${fmtDate(v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
  <h2>Servisi in vzdrževanje</h2><table><thead><tr><th>Datum</th><th>Vrsta</th><th>Km</th><th>Izvajalec/opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.services].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>[x.provider,x.note].filter(Boolean).join(' – '),x=>money(x.cost)])}</tbody></table>
  <h2>Gorivo</h2><table><thead><tr><th>Datum</th><th>Črpalka</th><th>Km</th><th>Litri</th><th>Znesek</th></tr></thead><tbody>${rows([...data.fuel].sort(sortDate),[x=>fmtDate(x.date),x=>x.station||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>Number(x.liters||0).toLocaleString('sl-SI'),x=>money(x.cost)])}</tbody></table>
@@ -625,10 +559,10 @@ function exportCSV(){
 function download(name,content,type){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
 function importJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();alert('Podatki so uspešno uvoženi.')}catch{alert('Datoteka ni veljavna.')}};r.readAsText(f)}
 function resetData(){if(confirm('Res želiš trajno izbrisati vse podatke?')){data=structuredClone(emptyData);save()}}
-renderAll();
+try { renderAll(); } catch (error) { console.error('MojAvto initialization error:', error); } finally { if (window.__hideMojAvtoSplash) setTimeout(window.__hideMojAvtoSplash, 650); }
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{});
 
-window.addEventListener('load',()=>{const splash=document.getElementById('appSplash');if(!splash)return;setTimeout(()=>splash.classList.add('splash-hidden'),650);setTimeout(()=>splash.remove(),1200);});
+window.addEventListener('load',()=>{if(window.__hideMojAvtoSplash)setTimeout(window.__hideMojAvtoSplash,650);});
 </script>
 <script src="update-manager.js"></script>
 </body>
