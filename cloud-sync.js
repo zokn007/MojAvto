@@ -134,6 +134,7 @@
     button.setAttribute('aria-label', 'Cloud Sync in uporabniški račun');
     button.textContent = '☁️';
     button.onclick = openPanel;
+    button.style.display = 'none';
     document.body.appendChild(button);
 
     const panel = document.createElement('div');
@@ -186,18 +187,25 @@
     if (cloudButton) cloudButton.dataset.online = navigator.onLine ? 'true' : 'false';
     const meta = (() => { try { return JSON.parse(localStorage.getItem(metaKey) || '{}'); } catch (_) { return {}; } })();
 
+    const moreStatus = document.getElementById('moreCloudStatus');
+    const moreBadge = document.getElementById('moreCloudBadge');
+
     if (currentUser) {
       status.textContent = navigator.onLine ? 'Samodejna sinhronizacija je vključena' : 'Brez povezave – spremembe čakajo na prenos';
       user.textContent = currentUser.displayName || currentUser.email || 'Prijavljen uporabnik';
       last.textContent = 'Zadnja uspešna sinhronizacija: ' + formatTime(meta.lastSuccess);
       loginButton.style.display = 'none';
       logoutButton.style.display = 'block';
+      if (moreStatus) moreStatus.textContent = navigator.onLine ? 'Vključena · ' + (currentUser.email || currentUser.displayName || 'Google račun') + ' · zadnja sinhronizacija ' + formatTime(meta.lastSuccess) : 'Vključena, trenutno brez internetne povezave';
+      if (moreBadge) { moreBadge.textContent = navigator.onLine ? 'Vključena' : 'Brez povezave'; moreBadge.className = 'badge green'; }
     } else {
       status.textContent = 'Sinhronizacija ni vključena';
       user.textContent = 'Za sinhronizacijo te aplikacije se prijavi z Googlom.';
       last.textContent = 'Vsaka aplikacija uporablja svojo prijavo in svoj Firebase projekt.';
       loginButton.style.display = 'block';
       logoutButton.style.display = 'none';
+      if (moreStatus) moreStatus.textContent = 'Ni vključena. Prijavi se z Googlom za sinhronizacijo med napravami.';
+      if (moreBadge) { moreBadge.textContent = 'Ni prijave'; moreBadge.className = 'badge'; }
     }
   }
 
@@ -422,6 +430,15 @@
       showStatus('offline', '☁️ Brez povezave – shranjeno lokalno', false);
     }
   });
+
+  window.DGCloudSync = {
+    open: openPanel,
+    syncNow: function () {
+      if (!currentUser) { openPanel(); return; }
+      upload();
+    },
+    login: login
+  };
 
   function boot() {
     injectUI();

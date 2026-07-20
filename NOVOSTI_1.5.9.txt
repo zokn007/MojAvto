@@ -1,0 +1,7 @@
+MOJAVTO 1.5.9
+
+- Google/Firebase sinhronizacija je prestavljena v razdelek Več.
+- Dodan jasen prikaz stanja prijave in zadnje sinhronizacije.
+- Dodana gumba Nastavitve sinhronizacije in Sinhroniziraj zdaj.
+- Odstranjena plavajoča ikona oblaka.
+- Popravljeno obvestilo, da so podatki ob prijavi shranjeni tudi v oblaku.
