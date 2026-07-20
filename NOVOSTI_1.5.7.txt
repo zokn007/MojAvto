@@ -1,0 +1,6 @@
+MOJAVTO 1.5.7 – POPRAVEK FIREBASE PRIJAVE
+
+- Odstranjena je napačna ročna nastavitev GOOGLE_APPLICATION_CREDENTIALS.
+- GitHub Actions zdaj uporabi datoteko poverilnic, ki jo samodejno ustvari google-github-actions/auth@v2.
+- Ohranjena sta obstoječi FIREBASE_SERVICE_ACCOUNT in enak način kot pri MojBazen.
+- Samodejni deploy Hosting in Firestore pravil ostaja aktiven ob pushu v main ali master.
