@@ -1,0 +1,8 @@
+MojAvto 1.6.1
+
+- Popravljeno nalaganje Firebase knjižnic.
+- Popravljen gumb Prijava z Googlom.
+- Prijavno okno se odpre neposredno ob kliku; na blokiranem popupu sledi redirect.
+- Dodana jasna sporočila napak.
+- Vmesnik sinhronizacije poenoten z večjim prikazom MojBazen.
+- Preprečeno nalaganje starega cloud-sync.js iz predpomnilnika.
