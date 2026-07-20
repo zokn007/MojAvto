@@ -447,6 +447,29 @@
     }
   }
 
+  window.DGCloudSync = {
+    open: openPanel,
+    close: closePanel,
+    login: login,
+    logout: () => window.firebase && firebase.auth().signOut(),
+    syncNow: async () => {
+      if (!currentUser) { openPanel(); return false; }
+      await upload();
+      return true;
+    },
+    getState: () => {
+      const meta = (() => { try { return JSON.parse(localStorage.getItem(metaKey) || '{}'); } catch (_) { return {}; } })();
+      return {
+        signedIn: Boolean(currentUser),
+        online: navigator.onLine,
+        userName: currentUser ? (currentUser.displayName || currentUser.email || 'Prijavljen uporabnik') : '',
+        email: currentUser ? (currentUser.email || '') : '',
+        lastSuccess: meta.lastSuccess || null
+      };
+    }
+  };
+  window.dispatchEvent(new CustomEvent('dg-cloud-ready'));
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 }());
