@@ -1,0 +1,8 @@
+MOJAVTO 1.6.0
+
+- Google prijava in sinhronizacija sta zdaj neposredno v razdelku Več.
+- Na iPhonu in v nameščeni PWA se uporablja zanesljivejša prijava s preusmeritvijo.
+- Prikaz Google uporabnika, zadnje sinhronizacije in naprave.
+- Ročna sinhronizacija in obnova iz oblaka.
+- Jasna sporočila ob napačni Firebase nastavitvi ali nedovoljeni domeni.
+- Videz in potek sta poenotena z aplikacijo MojBazen.

@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.5.9" />
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.6.0" />
   <title>MojAvto</title>
 <link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
 <link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
@@ -108,6 +108,21 @@
 #appSplash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,#172235 0,#070b12 52%,#020408 100%);transition:opacity .45s ease,visibility .45s ease}
 #appSplash.splash-hidden{opacity:0;visibility:hidden;pointer-events:none}.splash-inner{width:min(80vw,340px);text-align:center}.splash-icon{width:min(62vw,230px);height:min(62vw,230px);border-radius:25%;object-fit:cover;box-shadow:0 24px 70px rgba(0,0,0,.55)}
 .splash-name{margin-top:20px;font-size:29px;font-weight:900}.splash-sub{margin-top:6px;color:#c9d2df;font-size:14px;letter-spacing:.7px}.splash-credit{margin-top:25px;color:#8794a7;font-size:11px;line-height:1.55}
+
+
+
+.more-sync-card{overflow:hidden}
+.sync-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sync-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#e8f4fb;font-size:25px;flex:0 0 46px}
+.sync-title{font-weight:850;font-size:16px}.sync-state{font-size:12px;color:var(--muted);margin-top:3px}
+.sync-badge{margin-left:auto;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;background:#e7edf3;color:#667085;white-space:nowrap}
+.sync-badge.ok{background:#dff5e9;color:#167349}.sync-badge.warn{background:#fff0d9;color:#9a5b00}.sync-badge.error{background:#ffe3e3;color:#b42318}
+.sync-account{display:none;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);padding:12px;border-radius:14px;margin:12px 0}
+.sync-avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#dbe8f0}.sync-user-name{font-weight:800}.sync-user-email{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.sync-info{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.sync-info-box{border-radius:13px;padding:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}.sync-info-box span{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.sync-info-box strong{font-size:12px;overflow-wrap:anywhere}
+.sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.sync-actions .btn{width:100%;min-height:46px;justify-content:center;text-align:center}.sync-actions .wide{grid-column:1/-1}.sync-login{background:#fff!important;color:#1f2937!important;border:1px solid #d0d5dd!important}.google-g{font-weight:900;color:#4285f4;margin-right:7px}
+.sync-message{display:none;margin-top:11px;padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.4;background:#fff0d9;color:#8a5100}.sync-message.error{background:#ffe3e3;color:#a61b1b}
+@media(max-width:430px){.sync-info{grid-template-columns:1fr}.sync-actions{grid-template-columns:1fr 1fr}.sync-actions .btn{font-size:12px;padding:10px 7px}}
 
 </style>
 
@@ -214,17 +229,34 @@
 <div class="section-title"><h2>Opomniki</h2><button class="btn primary" onclick="openModal('reminder')">+ Dodaj</button></div>
       <div id="reminderList" class="list"></div>
       <div class="section-title"><h2>Google sinhronizacija</h2></div>
-      <div class="card">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-          <div style="font-size:30px">☁️</div>
-          <div style="flex:1"><strong>Sinhronizacija med napravami</strong><div id="moreCloudStatus" class="sub" style="margin-top:3px">Preverjanje stanja …</div></div>
-          <span id="moreCloudBadge" class="badge">Ni prijave</span>
+      <div class="card more-sync-card">
+        <div class="sync-head">
+          <div class="sync-icon">☁️</div>
+          <div><div class="sync-title">Sinhronizacija med napravami</div><div id="moreCloudStatus" class="sync-state">Preverjanje prijave …</div></div>
+          <span id="moreCloudBadge" class="sync-badge">Preverjanje</span>
         </div>
-        <div class="notice">Prijavi se z istim Google računom na vseh napravah. Podatki aplikacije MojAvto se bodo nato samodejno shranjevali in obnavljali prek Firebase oblaka.</div>
-        <div style="display:flex;flex-wrap:wrap;gap:9px">
-          <button class="btn primary" onclick="window.DGCloudSync&&window.DGCloudSync.open()">Nastavitve sinhronizacije</button>
-          <button class="btn" onclick="window.DGCloudSync&&window.DGCloudSync.syncNow()">Sinhroniziraj zdaj</button>
+        <div id="syncSignedOut">
+          <div class="notice">Prijavi se z istim Google računom kot v aplikaciji MojBazen. Podatki MojAvto bodo nato samodejno dostopni na telefonu, tablici in računalniku.</div>
+          <button id="moreCloudLogin" class="btn sync-login" style="width:100%;min-height:50px"><span class="google-g">G</span> Prijava z Googlom</button>
         </div>
+        <div id="syncSignedIn" style="display:none">
+          <div id="syncAccount" class="sync-account">
+            <img id="syncAvatar" class="sync-avatar" alt="Google račun">
+            <div><div id="syncUserName" class="sync-user-name">Uporabnik</div><div id="syncUserEmail" class="sync-user-email"></div></div>
+          </div>
+          <div class="sync-info">
+            <div class="sync-info-box"><span>Zadnja sinhronizacija</span><strong id="syncLastTime">Še nikoli</strong></div>
+            <div class="sync-info-box"><span>Naprava</span><strong id="syncDeviceName">Ta naprava</strong></div>
+          </div>
+          <div class="sync-actions">
+            <button id="moreCloudSyncNow" class="btn primary">Sinhroniziraj zdaj</button>
+            <button id="moreCloudRestore" class="btn">Obnovi iz oblaka</button>
+            <button id="moreCloudExport" class="btn">Izvozi kopijo</button>
+            <label class="btn" style="display:flex;align-items:center;cursor:pointer">Obnovi iz datoteke<input id="moreCloudImport" type="file" accept="application/json,.json" hidden></label>
+            <button id="moreCloudLogout" class="btn danger wide">Odjava</button>
+          </div>
+        </div>
+        <div id="syncMessage" class="sync-message"></div>
       </div>
       <div class="section-title"><h2>Podatki in varnost</h2></div>
       <div class="card">
@@ -239,7 +271,7 @@
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.5.9</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.6.0</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -537,7 +569,7 @@ function exportPDF(){
  const rows=(items,cols)=>items.length?items.map(x=>`<tr>${cols.map(c=>`<td>${esc(c(x))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}">Ni podatkov.</td></tr>`;
  const html=`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>MojAvto poročilo</title><style>
  @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111;margin:0;font-size:11px}h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;margin:20px 0 7px;border-bottom:2px solid #222;padding-bottom:4px}.meta{color:#555;margin-bottom:15px}.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.box{border:1px solid #bbb;border-radius:8px;padding:8px}.box b{display:block;font-size:12px;margin-bottom:3px}table{width:100%;border-collapse:collapse;page-break-inside:auto}tr{page-break-inside:avoid}th,td{border:1px solid #bbb;padding:5px;text-align:left;vertical-align:top}th{background:#eee}.footer{margin-top:18px;color:#666;font-size:9px;text-align:center}@media print{button{display:none}}
- </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.5.9</div>
+ </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.6.0</div>
  <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Dokumenti veljajo do</b>${fmtDate(v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
  <h2>Servisi in vzdrževanje</h2><table><thead><tr><th>Datum</th><th>Vrsta</th><th>Km</th><th>Izvajalec/opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.services].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>[x.provider,x.note].filter(Boolean).join(' – '),x=>money(x.cost)])}</tbody></table>
  <h2>Gorivo</h2><table><thead><tr><th>Datum</th><th>Črpalka</th><th>Km</th><th>Litri</th><th>Znesek</th></tr></thead><tbody>${rows([...data.fuel].sort(sortDate),[x=>fmtDate(x.date),x=>x.station||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>Number(x.liters||0).toLocaleString('sl-SI'),x=>money(x.cost)])}</tbody></table>
