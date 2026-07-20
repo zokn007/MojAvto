@@ -1,4 +1,4 @@
-const CACHE_VERSION='mojavto-local-1.6.1';
+const CACHE_VERSION='mojavto-local-1.6.2';
 const ASSETS=['./','./index.html','./manifest.json','./cloud-sync.js','./update-manager.js','./version.json','./mojavto-icon.jpeg','./peugeot-508-sw.jpg','./dg-smart-apps.png','./icon.png','./icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_VERSION).then(cache=>Promise.allSettled(ASSETS.map(asset=>cache.add(asset)))).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE_VERSION).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));

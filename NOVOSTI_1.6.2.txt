@@ -1,0 +1,8 @@
+MojAvto 1.6.2
+
+- Pri točenju je obvezen vnos kilometrov.
+- Dodan gumb za pridobitev aktualne cene goriva.
+- Cena na liter in skupni znesek sta ročno popravljiva.
+- Povprečna poraba se izračuna iz zaporednih polnih točenj.
+- Odstranjena je napoved praznega rezervoarja.
+- Na domačem zaslonu je mogoče uvoziti lastno sliko ozadja.
