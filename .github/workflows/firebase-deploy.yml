@@ -32,8 +32,15 @@ jobs:
       - name: Namesti Firebase CLI
         run: npm install --global firebase-tools
 
-      - name: Preveri prijavo
-        run: firebase projects:list
+      - name: Preveri prijavo in projekt
+        shell: bash
+        run: |
+          test -f "$GOOGLE_APPLICATION_CREDENTIALS"
+          PROJECT_ID=$(node -p "require(process.env.GOOGLE_APPLICATION_CREDENTIALS).project_id")
+          test -n "$PROJECT_ID"
+          echo "FIREBASE_PROJECT_ID=$PROJECT_ID" >> "$GITHUB_ENV"
+          echo "Firebase projekt: $PROJECT_ID"
+          firebase projects:list
 
       - name: Objavi Hosting in Firestore pravila
-        run: firebase deploy --only hosting,firestore:rules --non-interactive
+        run: firebase deploy --only hosting,firestore:rules --project "$FIREBASE_PROJECT_ID" --non-interactive
