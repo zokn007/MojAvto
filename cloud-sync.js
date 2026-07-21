@@ -270,6 +270,11 @@
     try {
       // Pojavno okno se mora odpreti neposredno ob kliku. Pred njim ne čakamo
       // na nobeno drugo async operacijo, ker iOS sicer izgubi uporabniško dejanje.
+      if (isAppleMobile() || isStandalone()) {
+        sessionStorage.setItem('dgAuthRedirectPending', '1');
+        await firebase.auth().signInWithRedirect(provider);
+        return;
+      }
       const result = await firebase.auth().signInWithPopup(provider);
       if (result && result.user) showInlineMessage('', false);
     } catch (error) {

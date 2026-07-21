@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html data-app-version="1.8.0" data-build-id="diagnostics-1.8.0" lang="sl">
+<html data-app-version="1.9.0" data-build-id="vehicle-aware-diagnostics-1.9.0" lang="sl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.8.0" />
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.9.0" />
   <title>MojAvto</title>
 <link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
 <link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
@@ -134,7 +134,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="/__/firebase/init.js"></script>
-<script src="cloud-sync.js?v=1.7.0"></script>
+<script src="cloud-sync.js?v=1.9.0"></script>
 </head>
 <body>
 <div id="appSplash" aria-label="MojAvto se nalaga"><div class="splash-inner"><img class="splash-icon" src="mojavto-icon.jpeg" alt="MojAvto"><div class="splash-name">MojAvto</div><div class="splash-sub">DG Smart app</div><div class="splash-credit">Designed &amp; Developed<br>by Davor Gričnik © 2026</div></div></div>
@@ -201,7 +201,7 @@
       <div class="section-title"><h2>Avtomehaniki v bližini</h2></div>
       <div class="card">
         <div class="notice">Aplikacija uporabi lokacijo samo ob pritisku gumba in poišče delavnice, evidentirane v OpenStreetMap, v radiju 25 km.</div>
-        <div class="mechanic-actions"><button class="btn primary" onclick="findMechanics()">📍 Poišči avtomehanika</button><button class="btn" onclick="openMechanicsInMaps()">Odpri v Zemljevidih</button></div>
+        <div class="mechanic-actions"><button class="btn primary" onclick="findMechanics()">📍 Poišči avtomehanika</button><button class="btn" onclick="openMechanicsInMaps()">Odpri v Zemljevidih</button><button class="btn danger" onclick="clearMechanicList()">Počisti seznam</button></div>
         <div id="mechanicStatus" class="mechanic-status sub">Lokacija še ni bila uporabljena.</div>
         <div id="mechanicList" class="list" style="margin-top:12px"></div>
       </div>
@@ -215,7 +215,7 @@
           <div class="form-grid">
             <div class="field full"><label>Opiši napako, zvok, opozorilno lučko ali obnašanje vozila</label><textarea id="diagnosticText" required placeholder="Primer: med vožnjo se je prižgala rdeča lučka za olje, motor ropota in izgublja moč …"></textarea></div>
             <div class="field"><label>Kdaj se napaka pojavi?</label><select id="diagnosticWhen"><option>Med zagonom</option><option>Med vožnjo</option><option>Pri zaviranju</option><option>Pri pospeševanju</option><option>V prostem teku</option><option>Po segretju motorja</option><option>Ves čas</option></select></div>
-            <div class="field"><label>Ali vozilo še vozi?</label><select id="diagnosticDrive"><option>Da, normalno</option><option>Da, vendar slabše</option><option>Ne</option><option>Nisem prepričan</option></select></div>
+            <div class="field"><label>OBD koda (neobvezno)</label><input id="diagnosticCode" placeholder="Primer: P0301" maxlength="7" autocapitalize="characters"></div><div class="field"><label>Ali vozilo še vozi?</label><select id="diagnosticDrive"><option>Da, normalno</option><option>Da, vendar slabše</option><option>Ne</option><option>Nisem prepričan</option></select></div>
             <div class="field full diagnostic-upload"><label for="diagnosticImages" style="display:block;margin-bottom:8px">📷 Naloži slike (do 5)</label><input id="diagnosticImages" type="file" accept="image/*" capture="environment" multiple onchange="previewDiagnosticImages(event)"><div class="privacy-note">Slike se v tej različici analizirajo lokalno kot priloga k opisu in se ne pošiljajo v oblak. Za najboljši rezultat v opis napiši tudi, kaj je na sliki.</div><div id="diagnosticPreview" class="diagnostic-preview"></div></div>
           </div>
           <div class="modal-actions"><button type="button" class="btn" onclick="clearDiagnostic()">Počisti</button><button class="btn primary" type="submit">Analiziraj napako</button></div>
@@ -310,7 +310,7 @@
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.8.0</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.9.0</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -380,7 +380,7 @@ function openModal(type){
    field('Zadnji servis pri km','lastServiceKm','number',v.lastServiceKm,'min="0"')+field('Datum zadnjega servisa','lastServiceDate','date',v.lastServiceDate||'')+
    field('Registracija velja do','registration','date',v.registration||v.vehicleDocumentsDate||'')+field('Tehnični pregled velja do','inspection','date',v.inspection||v.vehicleDocumentsDate||'')+
    field('Zavarovanje velja do','insurance','date',v.insurance||v.vehicleDocumentsDate||'')+field('Vinjeta velja do','vignetteTo','date',v.vignetteTo||'')+select('Pnevmatike','tireType',['Letne','Zimske','Celoletne'],v.tireType||'Letne')+
-   field('Dimenzija pnevmatik','tireSize','text',v.tireSize)+field('DOT / leto pnevmatik','tireDot','text',v.tireDot)
+   field('Dimenzija pnevmatik','tireSize','text',v.tireSize)+field('DOT / leto pnevmatik','tireDot','text',v.tireDot)+`<div class="field full diagnostic-upload"><label for="vehicleImageInput" style="display:block;margin-bottom:8px">📷 Lastna slika avtomobila</label><input id="vehicleImageInput" type="file" accept="image/*" onchange="previewVehicleImage(event)"><div class="privacy-note">Slika se zmanjša in shrani v aplikacijo ter se uporabi kot ozadje začetnega zaslona.</div><div id="vehicleImagePreview" class="diagnostic-preview">${v.imageData?`<img src="${v.imageData}" alt="Slika vozila">`:''}</div>${v.imageData?'<button type="button" class="btn danger" onclick="removeVehicleImage()">Odstrani sliko</button>':''}</div>`
  ,'vehicle')}
  if(type==='service'){title='Dodaj servis';html=formWrap(
    field('Datum','date','date',new Date().toISOString().slice(0,10),'required')+field('Kilometri','km','number',v.km||'','min="0" required"')+
@@ -430,12 +430,16 @@ function openModal(type){
  }
 }
 function closeModal(){document.getElementById('modal').close()}
+let pendingVehicleImage=null;
+function previewVehicleImage(e){const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const max=1280,scale=Math.min(1,max/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);pendingVehicleImage=c.toDataURL('image/jpeg',.82);document.getElementById('vehicleImagePreview').innerHTML=`<img src="${pendingVehicleImage}" alt="Predogled slike vozila">`;};img.src=r.result};r.readAsDataURL(f)}
+function removeVehicleImage(){pendingVehicleImage='';const p=document.getElementById('vehicleImagePreview');if(p)p.innerHTML='';}
+function applyVehicleImage(){const hero=document.querySelector('.hero');if(!hero)return;const img=data.vehicle&&data.vehicle.imageData;hero.style.backgroundImage=`linear-gradient(90deg,rgba(4,12,24,.94) 0%,rgba(4,12,24,.76) 45%,rgba(4,12,24,.34) 72%,rgba(4,12,24,.56) 100%),url("${img||'peugeot-508-sw.jpg'}")`;}
 function handleSubmit(e){
  e.preventDefault(); const fd=Object.fromEntries(new FormData(e.target)); const type=fd._type; delete fd._type;
  if(type==='vehicle'){
   delete fd.vignetteFrom;
   delete fd.vehicleDocumentsDate;
-  data.vehicle=fd
+  const oldImage=(data.vehicle||{}).imageData||''; data.vehicle=fd; data.vehicle.imageData=pendingVehicleImage===null?oldImage:pendingVehicleImage; pendingVehicleImage=null
 }
  else{fd.id=uid(); data[type==='service'?'services':type==='fuel'?'fuel':type==='expense'?'expenses':'reminders'].push(fd);
    if(fd.km && Number(fd.km)>Number(data.vehicle.km||0)) data.vehicle.km=fd.km;
@@ -492,6 +496,7 @@ async function loadOnlineFuelPrice(type,input){
 }
 let lastMechanicLocation=null;
 function distanceKm(a,b,c,d){const r=6371,to=x=>x*Math.PI/180;const x=to(c-a),y=to(d-b),q=Math.sin(x/2)**2+Math.cos(to(a))*Math.cos(to(c))*Math.sin(y/2)**2;return 2*r*Math.asin(Math.sqrt(q))}
+function clearMechanicList(){document.getElementById('mechanicList').innerHTML='';document.getElementById('mechanicStatus').textContent='Seznam je počiščen.';lastMechanicLocation=null}
 function openMechanicsInMaps(){const q=lastMechanicLocation?`avtomehanik near ${lastMechanicLocation.lat},${lastMechanicLocation.lon}`:'avtomehanik v bližini';window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`,'_blank','noopener')}
 function mechanicAddress(t){return [t['addr:street'],t['addr:housenumber'],t['addr:postcode'],t['addr:city']].filter(Boolean).join(' ')||'Naslov ni vpisan'}
 async function findMechanics(){
@@ -532,6 +537,32 @@ function previewDiagnosticImages(e){
 function clearDiagnostic(){
  document.getElementById('diagnosticForm').reset();document.getElementById('diagnosticPreview').innerHTML='';document.getElementById('diagnosticResult').style.display='none';
 }
+const dtcDatabase={
+'P0010':['Krmiljenje odmične gredi – vezje','ventil VVT, napeljava, olje'],
+'P0101':['Merilnik pretoka zraka – območje/delovanje','MAF, netesnost sesanja, zračni filter'],
+'P0113':['Tipalo temperature vsesanega zraka – visok signal','IAT tipalo ali napeljava'],
+'P0128':['Temperatura hladilne tekočine prenizka','termostat ali tipalo temperature'],
+'P0171':['Presuha mešanica – vrsta 1','vakuumska netesnost, MAF, tlak goriva'],
+'P0172':['Prebogata mešanica – vrsta 1','injektor, MAF, lambda sonda'],
+'P0201':['Injektor valja 1 – vezje','injektor ali napeljava'],
+'P0299':['Prenizek tlak turbine','netesnost cevi, aktuator, turbina'],
+'P0300':['Naključni/večkratni izpad vžiga','svečke, tuljave, injektorji, kompresija'],
+'P0301':['Izpad vžiga valja 1','svečka, tuljava, injektor, kompresija'],
+'P0302':['Izpad vžiga valja 2','svečka, tuljava, injektor, kompresija'],
+'P0303':['Izpad vžiga valja 3','svečka, tuljava, injektor, kompresija'],
+'P0304':['Izpad vžiga valja 4','svečka, tuljava, injektor, kompresija'],
+'P0401':['Nezadosten pretok EGR','zamašen EGR, ventil, tipalo'],
+'P0420':['Učinkovitost katalizatorja pod pragom','katalizator, lambda sonda, puščanje izpuha'],
+'P0442':['Majhno puščanje sistema EVAP','pokrov rezervoarja, cev EVAP, ventil'],
+'P0562':['Prenizka sistemska napetost','akumulator, alternator, mase'],
+'P0700':['Napaka krmiljenja menjalnika','potrebno je prebrati kode modula menjalnika'],
+'P2002':['Učinkovitost DPF pod pragom','zamašen DPF, tipalo tlaka, regeneracija'],
+'P2452':['Tipalo diferenčnega tlaka DPF – vezje','tipalo ali cevi tipala'],
+'P2563':['Tipalo položaja krmiljenja turbine','aktuator turbine, vakuum, napeljava'],
+'U0100':['Izgubljena komunikacija z ECU motorja','CAN napeljava, napajanje ECU, akumulator'],
+'U0121':['Izgubljena komunikacija z ABS','ABS modul, napajanje ali CAN napeljava']};
+function vehicleContext(){const v=data.vehicle||{};return [v.brand,v.model,v.year,v.fuelType].filter(Boolean).join(' ')}
+function vehicleSpecificHints(lower){const v=(vehicleContext()+' '+lower).toLowerCase(),h=[];if(v.includes('dizel')||v.includes('diesel')||v.includes('hdi')||v.includes('tdi'))h.push('Ker gre verjetno za dizelsko vozilo, preveri tudi DPF, EGR, tlak goriva in grelne svečke.');if(v.includes('peugeot')||v.includes('citroen'))h.push('Pri vozilih skupine PSA so pri izgubi moči pogosti EGR/DPF, vakuumske cevi turbine in tipalo diferenčnega tlaka.');if(v.includes('ford'))h.push('Pri Fordu preveri tudi cevi turbine, EGR in napeljavo tipal, zlasti ob izgubi moči.');if(v.includes('bmw'))h.push('Pri BMW preveri vakuumski sistem, EGR/DPF in krmiljenje turbine.');if(v.includes('volkswagen')||v.includes('audi')||v.includes('škoda')||v.includes('skoda')||v.includes('seat'))h.push('Pri vozilih skupine VAG preveri EGR/DPF, lopute sesanja in korekcije injektorjev.');return h}
 const diagnosticRules=[
  {keys:['rdeča lučka za olje','lučka za olje','pritisk olja','olje ropota','motor ropota'],severity:'stop',title:'Možna izguba tlaka motornega olja',causes:['prenizek nivo olja','okvara oljne črpalke ali tipala','puščanje olja','obraba motorja'],steps:['Takoj varno ustavi vozilo in ugasni motor.','Preveri nivo olja šele na ravni podlagi in po nekaj minutah.','Ne nadaljuj vožnje, če lučka ostane prižgana ali motor ropota; pokliči vleko.']},
  {keys:['pregreva','temperatura motorja','hladilna tekočina','para iz motorja','rdeča temperatura'],severity:'stop',title:'Možno pregrevanje motorja',causes:['premalo hladilne tekočine','puščanje sistema','okvara termostata, ventilatorja ali vodne črpalke'],steps:['Ustavi in ugasni motor.','Ne odpiraj vročega pokrova ekspanzijske posode.','Po ohladitvi preveri nivo in vidna puščanja; ob ponovitvi uporabi vleko.']},
@@ -545,14 +576,16 @@ const diagnosticRules=[
  {keys:['pnevmatika','guma prazna','tlak v pnevmatikah','tpms'],severity:'soon',title:'Možna izguba tlaka v pnevmatiki',causes:['prebodena pnevmatika','netesen ventil','temperaturna sprememba ali napačen tlak'],steps:['Varno ustavi in vizualno preveri pnevmatike.','Izmeri tlak in ga primerjaj z nalepko vozila.','Ne vozi s prazno ali poškodovano pnevmatiko.']}
 ];
 function runDiagnostic(e){
- e.preventDefault();const text=document.getElementById('diagnosticText').value.trim();const lower=(text+' '+document.getElementById('diagnosticWhen').value+' '+document.getElementById('diagnosticDrive').value).toLowerCase();
+ e.preventDefault();const text=document.getElementById('diagnosticText').value.trim();const code=(document.getElementById('diagnosticCode').value||'').trim().toUpperCase().replace(/\s/g,'');const lower=(text+' '+document.getElementById('diagnosticWhen').value+' '+document.getElementById('diagnosticDrive').value+' '+vehicleContext()).toLowerCase();
  let matches=diagnosticRules.map(r=>({...r,score:r.keys.reduce((n,k)=>n+(lower.includes(k)?1:0),0)})).filter(r=>r.score>0).sort((a,b)=>b.score-a.score);
  let best=matches[0]||{severity:'monitor',title:'Vzroka ni mogoče dovolj zanesljivo določiti samo iz opisa',causes:['več različnih mehanskih ali elektronskih napak ima podobne simptome'],steps:['Zapiši vse prižgane lučke, zvoke, vonj, temperaturo in pogoje nastanka.','Preberi OBD kode, vendar delov ne menjaj samo na podlagi kode.','Če so prisotni rdeča lučka, dim, močno ropotanje, izguba zavor ali pregrevanje, vozilo ustavi.']};
+ if(code&&dtcDatabase[code]){const d=dtcDatabase[code];best={severity:code.startsWith('U')?'soon':'monitor',title:`${code}: ${d[0]}`,causes:d[1].split(', '),steps:['Kode ne briši pred zapisom vseh podatkov in freeze-frame vrednosti.','Preveri napeljavo, konektorje in osnovne vzroke, nato opravi ciljno meritev.','Po popravilu izbriši kodo in izvedi preizkusno vožnjo.']};}
+ const hints=vehicleSpecificHints(lower);if(hints.length)best={...best,causes:[...best.causes,...hints]};
  if(document.getElementById('diagnosticDrive').value==='Ne' && best.severity==='monitor')best={...best,severity:'soon'};
  const labels={stop:'NE VOZI – takoj ustavi',soon:'ČIM PREJ NA PREGLED',monitor:'PREVIDNO SPREMLJAJ'};
- const result={id:uid(),date:new Date().toISOString(),text,when:document.getElementById('diagnosticWhen').value,drive:document.getElementById('diagnosticDrive').value,severity:best.severity,title:best.title,causes:best.causes,steps:best.steps,imageCount:Math.min(document.getElementById('diagnosticImages').files.length,5)};
+ const result={id:uid(),date:new Date().toISOString(),text,code,vehicle:vehicleContext(),when:document.getElementById('diagnosticWhen').value,drive:document.getElementById('diagnosticDrive').value,severity:best.severity,title:best.title,causes:best.causes,steps:best.steps,imageCount:Math.min(document.getElementById('diagnosticImages').files.length,5)};
  data.diagnostics=data.diagnostics||[];data.diagnostics.unshift(result);data.diagnostics=data.diagnostics.slice(0,30);localStorage.setItem(KEY,JSON.stringify(data));
- const out=document.getElementById('diagnosticResult');out.style.display='block';out.innerHTML=`<div class="severity ${best.severity}">${labels[best.severity]}</div><h3>${esc(best.title)}</h3><div class="sub">Ocena temelji na opisu simptomov${result.imageCount?` in ${result.imageCount} priloženih slikah`:''}. Ni nadomestilo za pregled vozila.</div><h3>Verjetni vzroki</h3><ul>${best.causes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><h3>Predlagani koraki</h3><ul>${best.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="mechanic-actions"><button class="btn primary" onclick="findMechanics();document.querySelector('[data-section=vehicle]').click()">📍 Poišči avtomehanika</button></div>`;
+ const out=document.getElementById('diagnosticResult');out.style.display='block';out.innerHTML=`<div class="severity ${best.severity}">${labels[best.severity]}</div><h3>${esc(best.title)}</h3><div class="sub">Vozilo: ${esc(vehicleContext()||'ni vpisano')} ${code?`• OBD: ${esc(code)}`:''}<br>Ocena temelji na opisu simptomov${result.imageCount?` in ${result.imageCount} priloženih slikah`:''}. Ni nadomestilo za pregled vozila.</div><h3>Verjetni vzroki</h3><ul>${best.causes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><h3>Predlagani koraki</h3><ul>${best.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="mechanic-actions"><button class="btn primary" onclick="findMechanics();document.querySelector('[data-section=vehicle]').click()">📍 Poišči avtomehanika</button></div>`;
  renderDiagnosticHistory();out.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function renderDiagnosticHistory(){
@@ -561,7 +594,7 @@ function renderDiagnosticHistory(){
 }
 function deleteDiagnostic(id){data.diagnostics=(data.diagnostics||[]).filter(x=>x.id!==id);save();renderDiagnosticHistory()}
 
-function renderAll(){
+function renderAll(){applyVehicleImage();
  renderDiagnosticHistory();
  const v=data.vehicle||{}, name=[v.brand,v.model].filter(Boolean).join(' ')||'Dodaj svoje vozilo';
  heroName.textContent=name; heroMeta.textContent=[v.year,v.plate].filter(Boolean).join(' • ')||'Znamka, model, letnik in registracija';
@@ -676,7 +709,7 @@ function exportPDF(){
  const rows=(items,cols)=>items.length?items.map(x=>`<tr>${cols.map(c=>`<td>${esc(c(x))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}">Ni podatkov.</td></tr>`;
  const html=`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>MojAvto poročilo</title><style>
  @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111;margin:0;font-size:11px}h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;margin:20px 0 7px;border-bottom:2px solid #222;padding-bottom:4px}.meta{color:#555;margin-bottom:15px}.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.box{border:1px solid #bbb;border-radius:8px;padding:8px}.box b{display:block;font-size:12px;margin-bottom:3px}table{width:100%;border-collapse:collapse;page-break-inside:auto}tr{page-break-inside:avoid}th,td{border:1px solid #bbb;padding:5px;text-align:left;vertical-align:top}th{background:#eee}.footer{margin-top:18px;color:#666;font-size:9px;text-align:center}@media print{button{display:none}}
- </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.8.0</div>
+ </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.9.0</div>
  <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Registracija</b>${fmtDate(v.registration)}</div><div class="box"><b>Tehnični pregled</b>${fmtDate(v.inspection)}</div><div class="box"><b>Zavarovanje</b>${fmtDate(v.insurance)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
  <h2>Servisi in vzdrževanje</h2><table><thead><tr><th>Datum</th><th>Vrsta</th><th>Km</th><th>Izvajalec/opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.services].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>[x.provider,x.note].filter(Boolean).join(' – '),x=>money(x.cost)])}</tbody></table>
  <h2>Gorivo</h2><table><thead><tr><th>Datum</th><th>Črpalka</th><th>Km</th><th>Litri</th><th>Znesek</th></tr></thead><tbody>${rows([...data.fuel].sort(sortDate),[x=>fmtDate(x.date),x=>x.station||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>Number(x.liters||0).toLocaleString('sl-SI'),x=>money(x.cost)])}</tbody></table>

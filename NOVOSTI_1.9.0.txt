@@ -1,0 +1,8 @@
+MojAvto 1.9.0
+
+- gumb Počisti seznam pri avtomehanikih
+- izboljšana Google prijava: redirect na iPhone/iPad/PWA, popup v namiznem brskalniku
+- razširjena lokalna baza pogostih generičnih OBD-II kod
+- diagnostika upošteva znamko, model, letnik in gorivo vpisanega vozila
+- polje za vnos OBD kode
+- nalaganje lastne slike vozila kot ozadje začetnega zaslona
