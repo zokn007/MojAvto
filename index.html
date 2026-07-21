@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html data-app-version="1.5.8" data-build-id="manual-1.5.8" lang="sl">
+<html data-app-version="1.8.0" data-build-id="diagnostics-1.8.0" lang="sl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.6.1" />
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.8.0" />
   <title>MojAvto</title>
 <link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
 <link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
@@ -57,11 +57,13 @@
     .modal-head{padding:18px 18px 10px;display:flex;justify-content:space-between;align-items:center}.modal-head h3{margin:0}
     .modal-body{padding:10px 18px 18px}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:15px}
     .close{border:0;background:transparent;color:#cbd5e1;font-size:24px}
-    .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,17,31,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:8px max(8px,calc((100vw - 1020px)/2)) calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(6,1fr);z-index:20}
+    .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,17,31,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:8px max(8px,calc((100vw - 1020px)/2)) calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(7,1fr);z-index:20}
     .nav button{border:0;background:transparent;color:#8ea2bb;padding:7px 2px;font-size:10px}.nav button span{display:block;font-size:21px;margin-bottom:3px}.nav button.active{color:#5cd4ff}
     .empty{text-align:center;color:var(--muted);padding:28px 15px;background:var(--panel);border:1px dashed #34475f;border-radius:17px}
     .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick button{min-height:88px;background:var(--panel2);border:1px solid var(--line);border-radius:17px;color:white;font-weight:700}.quick span{font-size:25px;display:block;margin-bottom:7px}
     .chart{height:210px;padding:10px 4px 22px}.chart-title{font-size:14px;font-weight:800;margin-bottom:4px}.chart-sub{font-size:11px;color:var(--muted);margin-bottom:8px}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}.metric{background:#122238;border:1px solid var(--line);border-radius:15px;padding:12px}.metric b{display:block;font-size:18px;margin-top:4px}.health{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:center}.health-ring{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#22c55e var(--health),#26384f 0);position:relative}.health-ring:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#101d2e}.health-ring strong{position:relative;z-index:1;font-size:22px}.health-list{display:grid;gap:7px}.health-line{display:flex;justify-content:space-between;font-size:12px}.home-costs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.home-costs .metric{text-align:center}@media(max-width:760px){.metric-row,.home-costs{grid-template-columns:repeat(2,1fr)}}.chart-grid line{stroke:#29405a;stroke-width:1}.chart-grid text,.chart-points text{fill:#9fb0c5;font-size:10px}.chart-line{fill:none;stroke:#38bdf8;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.chart-points circle{fill:#fff;stroke:#2563eb;stroke-width:4}
+
+    .mechanic-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.mechanic-status{margin-top:12px}.mechanic-distance{font-weight:850;color:#7dd3fc}.mechanic-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.mechanic-links a{text-decoration:none}.notification-settings{display:grid;gap:10px}.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}.toggle-row:last-child{border-bottom:0}.toggle-row input{width:22px;height:22px}.privacy-note{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.45}.diagnostic-upload{border:1px dashed #47627f;border-radius:16px;padding:14px;text-align:center;background:#0c1928}.diagnostic-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px}.diagnostic-preview img{width:100%;height:110px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}.severity{padding:10px 12px;border-radius:14px;font-weight:850;margin-bottom:10px}.severity.stop{background:#562029;color:#fecaca}.severity.soon{background:#513517;color:#fde68a}.severity.monitor{background:#173e2b;color:#bbf7d0}.diagnostic-result h3{margin:14px 0 7px}.diagnostic-result ul{margin:6px 0 0;padding-left:20px}.diagnostic-history{margin-top:12px}
     .notice{padding:12px 14px;border-radius:14px;background:#1f3045;border-left:4px solid #38bdf8;color:#dcecff;margin-bottom:10px}
 
     .hero-appname{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:2;background:rgba(4,12,24,.76);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:8px 15px;font-size:13px;font-weight:850;text-align:center;white-space:nowrap;text-shadow:none;backdrop-filter:blur(8px)}
@@ -127,12 +129,12 @@
 </style>
 
 <!-- DG Cloud Sync: Firebase Authentication + Cloud Firestore -->
-<script>window.DG_CLOUD_CONFIG={"appId": "mojavto", "appName": "MojAvto", "keys": ["mojAvtoV1"], "prefixes": ["service-notified-"]};</script>
+<script>window.DG_CLOUD_CONFIG={"appId": "mojavto", "appName": "MojAvto", "keys": ["mojAvtoV1"], "prefixes": ["service-notified-", "date-notified-"]};</script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="/__/firebase/init.js"></script>
-<script src="cloud-sync.js?v=1.6.1"></script>
+<script src="cloud-sync.js?v=1.7.0"></script>
 </head>
 <body>
 <div id="appSplash" aria-label="MojAvto se nalaga"><div class="splash-inner"><img class="splash-icon" src="mojavto-icon.jpeg" alt="MojAvto"><div class="splash-name">MojAvto</div><div class="splash-sub">DG Smart app</div><div class="splash-credit">Designed &amp; Developed<br>by Davor Gričnik © 2026</div></div></div>
@@ -183,12 +185,44 @@
     <section id="vehicle" class="section">
       <div class="section-title"><h2>Moje vozilo</h2><button class="btn primary" onclick="openModal('vehicle')">Uredi</button></div>
       <div id="vehicleCard" class="card"></div>
-      <div class="section-title"><h2>Pnevmatike, registracija in vinjeta</h2></div>
+      <div class="section-title"><h2>Dokumenti, vinjeta in pnevmatike</h2></div>
       <div class="grid">
         <div class="card stat"><div class="icon">🛞</div><div class="label">Komplet pnevmatik</div><div class="value" id="tireType">—</div><div class="small" id="tireInfo">ni podatka</div></div>
-        <div class="card stat"><div class="icon">📄</div><div class="label">Registracija velja do</div><div class="value" id="documentsDate">—</div><div class="small" id="documentsDays">ni podatka</div></div>
-        <div class="card stat"><div class="icon">🛣️</div><div class="label">Vinjeta velja do</div><div class="value" id="vignetteDate">—</div><div class="small" id="vignetteDays">ni podatka</div></div>
+        <div class="card stat"><div class="icon">📄</div><div class="label">Registracija</div><div class="value" id="registrationDate">—</div><div class="small" id="registrationDays">ni podatka</div></div>
+        <div class="card stat"><div class="icon">🧪</div><div class="label">Tehnični pregled</div><div class="value" id="inspectionDate">—</div><div class="small" id="inspectionDays">ni podatka</div></div>
+        <div class="card stat"><div class="icon">🛡️</div><div class="label">Zavarovanje</div><div class="value" id="insuranceDate">—</div><div class="small" id="insuranceDays">ni podatka</div></div>
+        <div class="card stat"><div class="icon">🛣️</div><div class="label">Vinjeta</div><div class="value" id="vignetteDate">—</div><div class="small" id="vignetteDays">ni podatka</div></div>
       </div>
+      <div class="section-title"><h2>Diagnostika okvare</h2></div>
+      <div class="card">
+        <div class="notice">Opiši simptome ali naloži fotografije opozorilnih lučk, puščanja, poškodb ali dima. Aplikacija poda verjetne vzroke in varne naslednje korake.</div>
+        <button class="btn primary" onclick="openDiagnostics()">🩺 Začni diagnostiko</button>
+      </div>
+      <div class="section-title"><h2>Avtomehaniki v bližini</h2></div>
+      <div class="card">
+        <div class="notice">Aplikacija uporabi lokacijo samo ob pritisku gumba in poišče delavnice, evidentirane v OpenStreetMap, v radiju 25 km.</div>
+        <div class="mechanic-actions"><button class="btn primary" onclick="findMechanics()">📍 Poišči avtomehanika</button><button class="btn" onclick="openMechanicsInMaps()">Odpri v Zemljevidih</button></div>
+        <div id="mechanicStatus" class="mechanic-status sub">Lokacija še ni bila uporabljena.</div>
+        <div id="mechanicList" class="list" style="margin-top:12px"></div>
+      </div>
+    </section>
+
+
+    <section id="diagnostics" class="section">
+      <div class="section-title"><h2>Diagnostika okvare</h2><span class="badge orange">Pomoč pri presoji</span></div>
+      <div class="card">
+        <form id="diagnosticForm" onsubmit="runDiagnostic(event)">
+          <div class="form-grid">
+            <div class="field full"><label>Opiši napako, zvok, opozorilno lučko ali obnašanje vozila</label><textarea id="diagnosticText" required placeholder="Primer: med vožnjo se je prižgala rdeča lučka za olje, motor ropota in izgublja moč …"></textarea></div>
+            <div class="field"><label>Kdaj se napaka pojavi?</label><select id="diagnosticWhen"><option>Med zagonom</option><option>Med vožnjo</option><option>Pri zaviranju</option><option>Pri pospeševanju</option><option>V prostem teku</option><option>Po segretju motorja</option><option>Ves čas</option></select></div>
+            <div class="field"><label>Ali vozilo še vozi?</label><select id="diagnosticDrive"><option>Da, normalno</option><option>Da, vendar slabše</option><option>Ne</option><option>Nisem prepričan</option></select></div>
+            <div class="field full diagnostic-upload"><label for="diagnosticImages" style="display:block;margin-bottom:8px">📷 Naloži slike (do 5)</label><input id="diagnosticImages" type="file" accept="image/*" capture="environment" multiple onchange="previewDiagnosticImages(event)"><div class="privacy-note">Slike se v tej različici analizirajo lokalno kot priloga k opisu in se ne pošiljajo v oblak. Za najboljši rezultat v opis napiši tudi, kaj je na sliki.</div><div id="diagnosticPreview" class="diagnostic-preview"></div></div>
+          </div>
+          <div class="modal-actions"><button type="button" class="btn" onclick="clearDiagnostic()">Počisti</button><button class="btn primary" type="submit">Analiziraj napako</button></div>
+        </form>
+      </div>
+      <div id="diagnosticResult" class="card diagnostic-result" style="display:none;margin-top:12px"></div>
+      <div class="section-title"><h2>Pretekle diagnoze</h2></div><div id="diagnosticHistory" class="list"></div>
     </section>
 
     <section id="history" class="section">
@@ -228,6 +262,14 @@
     <section id="more" class="section">
 <div class="section-title"><h2>Opomniki</h2><button class="btn primary" onclick="openModal('reminder')">+ Dodaj</button></div>
       <div id="reminderList" class="list"></div>
+      <div class="section-title"><h2>Pametna obvestila</h2></div>
+      <div class="card notification-settings">
+        <div class="notice">Opozorila se preverijo ob zagonu aplikacije, ob vrnitvi v aplikacijo in ob spremembi podatkov.</div>
+        <div class="toggle-row"><div><b>Servis po kilometrih</b><div class="sub">Opozorilo pri 3.000 km in ob zapadlosti</div></div><input id="notifyService" type="checkbox" onchange="saveNotificationSettings()"></div>
+        <div class="toggle-row"><div><b>Registracija, tehnični, zavarovanje in vinjeta</b><div class="sub">30, 14, 7 in 1 dan prej ter na dan poteka</div></div><input id="notifyDates" type="checkbox" onchange="saveNotificationSettings()"></div>
+        <button class="btn primary" onclick="enableNotifications()">🔔 Omogoči obvestila</button>
+        <div id="notificationStatus" class="sub">Preverjanje dovoljenja …</div>
+      </div>
       <div class="section-title"><h2>Google sinhronizacija</h2></div>
       <div class="card more-sync-card">
         <h3 class="sync-main-title">Firebase – sinhronizacija in varnostne kopije</h3>
@@ -268,7 +310,7 @@
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.6.1</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.8.0</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -279,6 +321,7 @@
 <nav class="nav">
   <button class="active" data-section="home"><span>🏠</span>Domov</button>
   <button data-section="vehicle"><span>🚘</span>Vozilo</button>
+  <button data-section="diagnostics"><span>🩺</span>Diagnostika</button>
   <button data-section="history"><span>🔧</span>Servisi</button>
   <button data-section="fuel"><span>⛽</span>Gorivo</button>
   <button data-section="expenses"><span>💶</span>Stroški</button>
@@ -292,17 +335,18 @@
 
 <script>
 const KEY='mojAvtoV1';
-const emptyData={vehicle:{},services:[],fuel:[],expenses:[],reminders:[]};
+const emptyData={vehicle:{},services:[],fuel:[],expenses:[],reminders:[],diagnostics:[],settings:{notifyService:true,notifyDates:true}};
 let data=load();
 if(data.vehicle && 'vignetteFrom' in data.vehicle){delete data.vehicle.vignetteFrom;localStorage.setItem(KEY,JSON.stringify(data));}
-if(data.vehicle && !data.vehicle.vehicleDocumentsDate){
-  data.vehicle.vehicleDocumentsDate = data.vehicle.registration || data.vehicle.insurance || data.vehicle.inspection || '';
-  if(data.vehicle.vehicleDocumentsDate){
-    data.vehicle.registration = data.vehicle.vehicleDocumentsDate;
-    data.vehicle.insurance = data.vehicle.vehicleDocumentsDate;
-    data.vehicle.inspection = data.vehicle.vehicleDocumentsDate;
-    localStorage.setItem(KEY,JSON.stringify(data));
+if(data.vehicle){
+  const legacy=data.vehicle.vehicleDocumentsDate||'';
+  if(legacy){
+    data.vehicle.registration=data.vehicle.registration||legacy;
+    data.vehicle.insurance=data.vehicle.insurance||legacy;
+    data.vehicle.inspection=data.vehicle.inspection||legacy;
   }
+  data.settings={notifyService:true,notifyDates:true,...(data.settings||{})};
+  localStorage.setItem(KEY,JSON.stringify(data));
 }
 function load(){try{return {...emptyData,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return structuredClone(emptyData)}}
 function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
@@ -333,8 +377,9 @@ function openModal(type){
    field('VIN','vin','text',v.vin,'',true)+field('Trenutni kilometri','km','number',v.km,'min="0" required')+
    field('Servisni interval (km)','serviceInterval','number',v.serviceInterval||15000,'min="1000" inputmode="numeric"')+
    field('Prostornina rezervoarja (l)','tankCapacity','number',v.tankCapacity||60,'min="10" step="1" inputmode="decimal"')+
-   field('Zadnji servis pri km','lastServiceKm','number',v.lastServiceKm,'min="0"')+
-   field('Registracija, zavarovanje in tehnični pregled do','vehicleDocumentsDate','date',v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection,'',true)+field('Vinjeta velja do','vignetteTo','date',v.vignetteTo,'',true)+select('Pnevmatike','tireType',['Letne','Zimske','Celoletne'],v.tireType||'Letne')+
+   field('Zadnji servis pri km','lastServiceKm','number',v.lastServiceKm,'min="0"')+field('Datum zadnjega servisa','lastServiceDate','date',v.lastServiceDate||'')+
+   field('Registracija velja do','registration','date',v.registration||v.vehicleDocumentsDate||'')+field('Tehnični pregled velja do','inspection','date',v.inspection||v.vehicleDocumentsDate||'')+
+   field('Zavarovanje velja do','insurance','date',v.insurance||v.vehicleDocumentsDate||'')+field('Vinjeta velja do','vignetteTo','date',v.vignetteTo||'')+select('Pnevmatike','tireType',['Letne','Zimske','Celoletne'],v.tireType||'Letne')+
    field('Dimenzija pnevmatik','tireSize','text',v.tireSize)+field('DOT / leto pnevmatik','tireDot','text',v.tireDot)
  ,'vehicle')}
  if(type==='service'){title='Dodaj servis';html=formWrap(
@@ -389,34 +434,43 @@ function handleSubmit(e){
  e.preventDefault(); const fd=Object.fromEntries(new FormData(e.target)); const type=fd._type; delete fd._type;
  if(type==='vehicle'){
   delete fd.vignetteFrom;
-  if(fd.vehicleDocumentsDate){
-    fd.registration=fd.vehicleDocumentsDate;
-    fd.insurance=fd.vehicleDocumentsDate;
-    fd.inspection=fd.vehicleDocumentsDate;
-  }
+  delete fd.vehicleDocumentsDate;
   data.vehicle=fd
 }
  else{fd.id=uid(); data[type==='service'?'services':type==='fuel'?'fuel':type==='expense'?'expenses':'reminders'].push(fd);
    if(fd.km && Number(fd.km)>Number(data.vehicle.km||0)) data.vehicle.km=fd.km;
-   if(type==='service' && (fd.category==='Redni servis'||fd.category==='Olje in filtri')) data.vehicle.lastServiceKm=fd.km;
+   if(type==='service' && (fd.category==='Redni servis'||fd.category==='Olje in filtri')){data.vehicle.lastServiceKm=fd.km;data.vehicle.lastServiceDate=fd.date;}
    if(type==='service' && Number(fd.cost)>0) data.expenses.push({id:uid(),date:fd.date,category:'Servis',cost:fd.cost,km:fd.km,note:fd.category});
    if(type==='fuel' && Number(fd.cost)>0) data.expenses.push({id:uid(),date:fd.date,category:'Gorivo',cost:fd.cost,km:fd.km,note:'Točenje goriva'});
  }
  closeModal(); save();
 }
 function del(group,id){if(confirm('Želiš izbrisati ta vnos?')){data[group]=data[group].filter(x=>x.id!==id);save()}}
-function checkServiceNotification(left,v){
- if(!v.lastServiceKm || !Number.isFinite(left) || left>3000) return;
- const nextAt=Number(v.lastServiceKm||0)+Number(v.serviceInterval||15000);
- const key=`service-notified-${nextAt}`;
- if(localStorage.getItem(key)) return;
- const body=left<=0?`Redni servis je potreben zdaj (${Number(v.km||0).toLocaleString('sl-SI')} km).`:`Do rednega servisa je še približno ${left.toLocaleString('sl-SI')} km.`;
- const send=()=>{try{new Notification('MojAvto – servis', {body, icon:'icon.png'});localStorage.setItem(key,'1')}catch(e){}};
- if('Notification' in window){
-   if(Notification.permission==='granted') send();
-   else if(Notification.permission==='default') Notification.requestPermission().then(p=>{if(p==='granted')send()});
- }
+function notificationSettings(){return {notifyService:true,notifyDates:true,...(data.settings||{})}}
+function updateNotificationUI(){
+ const st=notificationSettings();const a=document.getElementById('notifyService'),b=document.getElementById('notifyDates'),out=document.getElementById('notificationStatus');
+ if(a)a.checked=st.notifyService;if(b)b.checked=st.notifyDates;
+ if(out)out.textContent=!('Notification' in window)?'Ta brskalnik ne podpira sistemskih obvestil.':Notification.permission==='granted'?'Obvestila so omogočena.':Notification.permission==='denied'?'Obvestila so blokirana v nastavitvah brskalnika.':'Pritisni »Omogoči obvestila«.';
 }
+function saveNotificationSettings(){data.settings={...notificationSettings(),notifyService:document.getElementById('notifyService')?.checked??true,notifyDates:document.getElementById('notifyDates')?.checked??true};localStorage.setItem(KEY,JSON.stringify(data));checkAllNotifications();updateNotificationUI()}
+async function enableNotifications(){if(!('Notification' in window)){alert('Ta brskalnik ne podpira sistemskih obvestil.');return}const p=await Notification.requestPermission();updateNotificationUI();if(p==='granted'){showAppNotification('MojAvto – obvestila','Pametna obvestila so uspešno omogočena.','notification-test');checkAllNotifications()}}
+async function showAppNotification(title,body,key){
+ if(!('Notification' in window)||Notification.permission!=='granted'||localStorage.getItem(key))return;
+ try{const reg=await navigator.serviceWorker?.ready;if(reg)await reg.showNotification(title,{body,icon:'mojavto-icon.jpeg',badge:'icon.png',tag:key,renotify:false});else new Notification(title,{body,icon:'mojavto-icon.jpeg',tag:key});localStorage.setItem(key,'1')}catch(e){try{new Notification(title,{body,icon:'mojavto-icon.jpeg',tag:key});localStorage.setItem(key,'1')}catch(_){}}
+}
+function checkServiceNotification(left,v){
+ if(!notificationSettings().notifyService||!v.lastServiceKm||!Number.isFinite(left)||left>3000)return;
+ const nextAt=Number(v.lastServiceKm||0)+Number(v.serviceInterval||15000);const threshold=left<=0?'due':'3000';const key=`service-notified-${nextAt}-${threshold}`;
+ const body=left<=0?`Redni servis je potreben zdaj (${Number(v.km||0).toLocaleString('sl-SI')} km).`:`Do rednega servisa je še približno ${left.toLocaleString('sl-SI')} km.`;
+ showAppNotification('MojAvto – servis',body,key);
+}
+function checkDateNotification(type,label,date){
+ if(!notificationSettings().notifyDates||!date)return;const d=daysTo(date);if(d===null)return;
+ const thresholds=[30,14,7,1,0];if(!thresholds.includes(d)&&d>=0)return;if(d<0&&d!==-1)return;
+ const key=`date-notified-${type}-${date}-${d}`;const body=d<0?`${label} je potekel ${fmtDate(date)}.`:d===0?`${label} poteče danes.`:d===1?`${label} poteče jutri.`:`${label} poteče čez ${d} dni (${fmtDate(date)}).`;
+ showAppNotification(`MojAvto – ${label.toLowerCase()}`,body,key);
+}
+function checkAllNotifications(){const v=data.vehicle||{};checkDateNotification('registration','Registracija',v.registration);checkDateNotification('inspection','Tehnični pregled',v.inspection);checkDateNotification('insurance','Zavarovanje',v.insurance);checkDateNotification('vignette','Vinjeta',v.vignetteTo)}
 
 function healthDot(status){
   const cls=status==='green'?'green':status==='red'?'red':'white';
@@ -436,6 +490,24 @@ async function loadOnlineFuelPrice(type,input){
    input.value=Number(value).toFixed(3); if(status)status.textContent=`Spletni predlog: ${Number(value).toFixed(3)} €/l. Ceno lahko ročno popraviš.`;
  }catch(e){input.value=Number(fallback[type]||0).toFixed(3);if(status)status.textContent='Spletna cena trenutno ni dosegljiva. Uporabljen je zadnji znani predlog; ceno lahko popraviš.'}
 }
+let lastMechanicLocation=null;
+function distanceKm(a,b,c,d){const r=6371,to=x=>x*Math.PI/180;const x=to(c-a),y=to(d-b),q=Math.sin(x/2)**2+Math.cos(to(a))*Math.cos(to(c))*Math.sin(y/2)**2;return 2*r*Math.asin(Math.sqrt(q))}
+function openMechanicsInMaps(){const q=lastMechanicLocation?`avtomehanik near ${lastMechanicLocation.lat},${lastMechanicLocation.lon}`:'avtomehanik v bližini';window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`,'_blank','noopener')}
+function mechanicAddress(t){return [t['addr:street'],t['addr:housenumber'],t['addr:postcode'],t['addr:city']].filter(Boolean).join(' ')||'Naslov ni vpisan'}
+async function findMechanics(){
+ const status=document.getElementById('mechanicStatus'),list=document.getElementById('mechanicList');list.innerHTML='';
+ if(!navigator.geolocation){status.textContent='Naprava ne podpira določanja lokacije.';return}
+ status.textContent='Pridobivam lokacijo …';
+ navigator.geolocation.getCurrentPosition(async pos=>{const lat=pos.coords.latitude,lon=pos.coords.longitude;lastMechanicLocation={lat,lon};status.textContent='Iščem delavnice v radiju 25 km …';
+  const q=`[out:json][timeout:25];(nwr["shop"="car_repair"](around:25000,${lat},${lon});nwr["amenity"="car_repair"](around:25000,${lat},${lon}););out center tags;`;
+  try{const r=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:'data='+encodeURIComponent(q)});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();
+   const seen=new Set(),items=j.elements.map(e=>{const t=e.tags||{},la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon,name=t.name||t.operator||'Avtoservis';return {name,t,lat:la,lon:lo,dist:distanceKm(lat,lon,la,lo)}}).filter(x=>Number.isFinite(x.dist)&&!seen.has(`${x.name}|${x.lat}|${x.lon}`)&&seen.add(`${x.name}|${x.lat}|${x.lon}`)).sort((a,b)=>a.dist-b.dist).slice(0,25);
+   status.textContent=items.length?`Najdenih ${items.length} najbližjih delavnic. Podatki temeljijo na OpenStreetMap.`:'V radiju 25 km ni bilo najdenih vpisanih delavnic.';
+   list.innerHTML=items.map(x=>{const tel=x.t.phone||x.t['contact:phone']||'',web=x.t.website||x.t['contact:website']||'',addr=mechanicAddress(x.t),maps=`https://www.google.com/maps/dir/?api=1&destination=${x.lat},${x.lon}`;return `<div class="item"><div class="item-icon">🔧</div><div class="item-main"><div class="item-title">${esc(x.name)}</div><div class="item-meta">${esc(addr)}<br><span class="mechanic-distance">${x.dist.toFixed(1)} km stran</span>${tel?' • '+esc(tel):''}</div><div class="mechanic-links"><a class="btn small primary" target="_blank" rel="noopener" href="${maps}">Pot</a>${tel?`<a class="btn small" href="tel:${esc(tel.replace(/[^+\d]/g,''))}">Pokliči</a>`:''}${web?`<a class="btn small" target="_blank" rel="noopener" href="${esc(web)}">Splet</a>`:''}</div></div></div>`}).join('')||empty('Ni rezultatov.');
+  }catch(e){status.textContent='Iskanje trenutno ni uspelo. Odpri iskanje v Zemljevidih ali poskusi ponovno.';list.innerHTML=`<div class="empty">Storitev OpenStreetMap trenutno ni dosegljiva.<br><br><button class="btn primary" onclick="openMechanicsInMaps()">Odpri v Zemljevidih</button></div>`}
+ },err=>{const m=err.code===1?'Dostop do lokacije ni dovoljen. Omogoči lokacijo za to spletno stran.':err.code===2?'Lokacije ni bilo mogoče določiti.':'Določanje lokacije je trajalo predolgo.';status.textContent=m;},{enableHighAccuracy:true,timeout:12000,maximumAge:300000});
+}
+
 function fuelForecast(){
  const full=[...data.fuel].filter(x=>x.fullTank==='Da'&&Number(x.km)>0&&Number(x.liters)>0).sort((a,b)=>Number(a.km)-Number(b.km));
  const avg=calcAvgFuel(), v=data.vehicle||{}, cap=Number(v.tankCapacity||60), currentKm=Number(v.km||0);
@@ -446,7 +518,51 @@ function fuelForecast(){
  return {range,remaining,date};
 }
 
+
+function openDiagnostics(){
+  document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.section==='diagnostics'));
+  document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+  document.getElementById('diagnostics').classList.add('active');
+  renderDiagnosticHistory();window.scrollTo({top:0,behavior:'smooth'});
+}
+function previewDiagnosticImages(e){
+ const out=document.getElementById('diagnosticPreview');out.innerHTML='';
+ [...e.target.files].slice(0,5).forEach(f=>{const img=document.createElement('img');img.alt=f.name;img.src=URL.createObjectURL(f);out.appendChild(img)});
+}
+function clearDiagnostic(){
+ document.getElementById('diagnosticForm').reset();document.getElementById('diagnosticPreview').innerHTML='';document.getElementById('diagnosticResult').style.display='none';
+}
+const diagnosticRules=[
+ {keys:['rdeča lučka za olje','lučka za olje','pritisk olja','olje ropota','motor ropota'],severity:'stop',title:'Možna izguba tlaka motornega olja',causes:['prenizek nivo olja','okvara oljne črpalke ali tipala','puščanje olja','obraba motorja'],steps:['Takoj varno ustavi vozilo in ugasni motor.','Preveri nivo olja šele na ravni podlagi in po nekaj minutah.','Ne nadaljuj vožnje, če lučka ostane prižgana ali motor ropota; pokliči vleko.']},
+ {keys:['pregreva','temperatura motorja','hladilna tekočina','para iz motorja','rdeča temperatura'],severity:'stop',title:'Možno pregrevanje motorja',causes:['premalo hladilne tekočine','puščanje sistema','okvara termostata, ventilatorja ali vodne črpalke'],steps:['Ustavi in ugasni motor.','Ne odpiraj vročega pokrova ekspanzijske posode.','Po ohladitvi preveri nivo in vidna puščanja; ob ponovitvi uporabi vleko.']},
+ {keys:['zavore','pedal pade','mehka zavora','rdeča zavorna','ne zavira','brušenje pri zaviranju'],severity:'stop',title:'Možna resna napaka zavornega sistema',causes:['izguba zavorne tekočine','obrabljene ploščice ali diski','okvara glavnega cilindra ali ABS'],steps:['Ne nadaljuj običajne vožnje.','Preveri opozorilne lučke in morebitno puščanje pod vozilom.','Organiziraj vleko do servisa.']},
+ {keys:['dim','gori','vonj po bencinu','vonj po gorivu','iskrenje'],severity:'stop',title:'Možna nevarnost požara ali uhajanja goriva',causes:['uhajanje goriva ali olja na vroče dele','električni kratek stik','pregrevanje komponente'],steps:['Takoj ustavi, ugasni motor in izstopi.','Ne odpiraj pokrova motorja, če vidiš ogenj.','Pokliči 112 ob požaru, sicer vlečno službo.']},
+ {keys:['check engine utripa','utripajoča lučka motorja','motor cuka','izgublja moč'],severity:'soon',title:'Možen izpad vžiga ali napaka krmiljenja motorja',causes:['vžigalna tuljava ali svečka','vbrizg goriva','tipalo zraka ali izpuha','EGR/DPF pri dizlu'],steps:['Vozi zelo umirjeno le do varnega mesta.','Če lučka utripa, motor močno trese ali ni moči, ustavi in pokliči pomoč.','Preberi OBD kode in naroči diagnostiko.']},
+ {keys:['akumulator','ne vžge','samo klika','počasi vergla','lučka baterije'],severity:'soon',title:'Možna težava akumulatorja ali polnjenja',causes:['prazen ali iztrošen akumulator','slab kontakt na sponkah','okvara alternatorja ali zaganjalnika'],steps:['Preveri, ali svetila ob zagonu močno zatemnijo.','Preglej in očisti sponke, če je varno.','Izmeri napetost: približno 12,4–12,8 V ugasnjen in 13,8–14,7 V pri delujočem motorju.']},
+ {keys:['cvili','škripa pri zaviranju','vibrira pri zaviranju','trese volan pri zaviranju'],severity:'soon',title:'Možna obraba zavor ali deformacija diskov',causes:['obrabljene ploščice','zarjaveli ali zviti diski','zagozdena zavorna čeljust'],steps:['Preveri debelino ploščic in stanje diskov.','Do pregleda se izogibaj hitri vožnji in močnemu zaviranju.','Naroči pregled zavor.']},
+ {keys:['dpf','filter trdih delcev','regeneracija','rumena lučka motorja'],severity:'monitor',title:'Možna težava izpušnega sistema ali DPF',causes:['nedokončana regeneracija','zamašen DPF','EGR ali tipalo diferenčnega tlaka'],steps:['Če navodila vozila dovoljujejo, opravi 20–30 minut enakomerne vožnje pri ogretem motorju.','Če lučka ostane, se pojavi omejena moč ali druge lučke, naroči diagnostiko.']},
+ {keys:['klima ne hladi','topel zrak iz klime','klima smrdi'],severity:'monitor',title:'Možna napaka klimatske naprave',causes:['premalo hladiva','puščanje','okvara kompresorja ali ventilatorja','umazan kabinski filter'],steps:['Preveri kabinski filter in delovanje ventilatorja.','Naroči pregled tesnosti in tlakov; hladiva ne dopolnjuj brez preverjanja puščanja.']},
+ {keys:['pnevmatika','guma prazna','tlak v pnevmatikah','tpms'],severity:'soon',title:'Možna izguba tlaka v pnevmatiki',causes:['prebodena pnevmatika','netesen ventil','temperaturna sprememba ali napačen tlak'],steps:['Varno ustavi in vizualno preveri pnevmatike.','Izmeri tlak in ga primerjaj z nalepko vozila.','Ne vozi s prazno ali poškodovano pnevmatiko.']}
+];
+function runDiagnostic(e){
+ e.preventDefault();const text=document.getElementById('diagnosticText').value.trim();const lower=(text+' '+document.getElementById('diagnosticWhen').value+' '+document.getElementById('diagnosticDrive').value).toLowerCase();
+ let matches=diagnosticRules.map(r=>({...r,score:r.keys.reduce((n,k)=>n+(lower.includes(k)?1:0),0)})).filter(r=>r.score>0).sort((a,b)=>b.score-a.score);
+ let best=matches[0]||{severity:'monitor',title:'Vzroka ni mogoče dovolj zanesljivo določiti samo iz opisa',causes:['več različnih mehanskih ali elektronskih napak ima podobne simptome'],steps:['Zapiši vse prižgane lučke, zvoke, vonj, temperaturo in pogoje nastanka.','Preberi OBD kode, vendar delov ne menjaj samo na podlagi kode.','Če so prisotni rdeča lučka, dim, močno ropotanje, izguba zavor ali pregrevanje, vozilo ustavi.']};
+ if(document.getElementById('diagnosticDrive').value==='Ne' && best.severity==='monitor')best={...best,severity:'soon'};
+ const labels={stop:'NE VOZI – takoj ustavi',soon:'ČIM PREJ NA PREGLED',monitor:'PREVIDNO SPREMLJAJ'};
+ const result={id:uid(),date:new Date().toISOString(),text,when:document.getElementById('diagnosticWhen').value,drive:document.getElementById('diagnosticDrive').value,severity:best.severity,title:best.title,causes:best.causes,steps:best.steps,imageCount:Math.min(document.getElementById('diagnosticImages').files.length,5)};
+ data.diagnostics=data.diagnostics||[];data.diagnostics.unshift(result);data.diagnostics=data.diagnostics.slice(0,30);localStorage.setItem(KEY,JSON.stringify(data));
+ const out=document.getElementById('diagnosticResult');out.style.display='block';out.innerHTML=`<div class="severity ${best.severity}">${labels[best.severity]}</div><h3>${esc(best.title)}</h3><div class="sub">Ocena temelji na opisu simptomov${result.imageCount?` in ${result.imageCount} priloženih slikah`:''}. Ni nadomestilo za pregled vozila.</div><h3>Verjetni vzroki</h3><ul>${best.causes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><h3>Predlagani koraki</h3><ul>${best.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="mechanic-actions"><button class="btn primary" onclick="findMechanics();document.querySelector('[data-section=vehicle]').click()">📍 Poišči avtomehanika</button></div>`;
+ renderDiagnosticHistory();out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderDiagnosticHistory(){
+ const out=document.getElementById('diagnosticHistory');if(!out)return;const a=data.diagnostics||[];
+ out.innerHTML=a.length?a.map(x=>`<div class="item"><div class="item-icon">${x.severity==='stop'?'🛑':x.severity==='soon'?'⚠️':'🩺'}</div><div class="item-main"><div class="item-title">${esc(x.title)}</div><div class="item-meta">${new Date(x.date).toLocaleString('sl-SI')} • ${esc(x.text.slice(0,120))}${x.text.length>120?'…':''}</div></div><button class="btn small danger" onclick="deleteDiagnostic('${x.id}')">Izbriši</button></div>`).join(''):'<div class="empty">Ni shranjenih diagnoz.</div>';
+}
+function deleteDiagnostic(id){data.diagnostics=(data.diagnostics||[]).filter(x=>x.id!==id);save();renderDiagnosticHistory()}
+
 function renderAll(){
+ renderDiagnosticHistory();
  const v=data.vehicle||{}, name=[v.brand,v.model].filter(Boolean).join(' ')||'Dodaj svoje vozilo';
  heroName.textContent=name; heroMeta.textContent=[v.year,v.plate].filter(Boolean).join(' • ')||'Znamka, model, letnik in registracija';
  heroKm.innerHTML=`${Number(v.km||0).toLocaleString('sl-SI')} km<small>trenutno stanje</small>`;
@@ -461,15 +577,10 @@ function renderAll(){
  const future=data.reminders.filter(r=>daysTo(r.date)>=0).sort((a,b)=>a.date.localeCompare(b.date)); reminderCount.textContent=future.length;
  homeReminders.innerHTML=future.slice(0,4).map(reminderHTML).join('')||empty('Ni prihajajočih opomnikov.');
 
- vehicleCard.innerHTML=`<div style="font-size:25px;font-weight:900">${esc(name)}</div><div class="vehicle-meta">${esc([v.year,v.plate].filter(Boolean).join(' • '))}</div><hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><div class="form-grid"><div><div class="sub">VIN</div><b>${esc(v.vin||'—')}</b></div><div><div class="sub">Kilometri</div><b>${Number(v.km||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Servisni interval</div><b>${Number(v.serviceInterval||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Zadnji servis</div><b>${Number(v.lastServiceKm||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Vinjeta</div><b>${fmtDate(v.vignetteTo)}</b></div></div>`;
+ vehicleCard.innerHTML=`<div style="font-size:25px;font-weight:900">${esc(name)}</div><div class="vehicle-meta">${esc([v.year,v.plate].filter(Boolean).join(' • '))}</div><hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><div class="form-grid"><div><div class="sub">VIN</div><b>${esc(v.vin||'—')}</b></div><div><div class="sub">Kilometri</div><b>${Number(v.km||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Servisni interval</div><b>${Number(v.serviceInterval||0).toLocaleString('sl-SI')} km</b></div><div><div class="sub">Zadnji servis</div><b>${Number(v.lastServiceKm||0).toLocaleString('sl-SI')} km${v.lastServiceDate?' • '+fmtDate(v.lastServiceDate):''}</b></div><div><div class="sub">Vinjeta</div><b>${fmtDate(v.vignetteTo)}</b></div></div>`;
  tireType.textContent=v.tireType||'—'; tireInfo.textContent=[v.tireSize,v.tireDot].filter(Boolean).join(' • ')||'ni podatka';
- const sharedDocDate=v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection;
- document.getElementById('documentsDate').textContent=fmtDate(sharedDocDate);
- const docDays=daysTo(sharedDocDate);
- document.getElementById('documentsDays').textContent=docDays===null?'ni podatka':docDays<0?`poteklo pred ${Math.abs(docDays)} dnevi`:docDays===0?'poteče danes':`še ${docDays} dni`;
- document.getElementById('vignetteDate').textContent=fmtDate(v.vignetteTo);
- const vigDays=daysTo(v.vignetteTo);
- document.getElementById('vignetteDays').textContent=vigDays===null?'ni podatka':vigDays<0?`potekla pred ${Math.abs(vigDays)} dnevi`:vigDays===0?'poteče danes':`še ${vigDays} dni`;
+ dateCard('registration',v.registration);dateCard('inspection',v.inspection);dateCard('insurance',v.insurance);dateCard('vignette',v.vignetteTo);
+ checkAllNotifications();updateNotificationUI();
 
  serviceList.innerHTML=[...data.services].sort(sortDate).map(serviceHTML).join('')||empty('Še ni servisnih vnosov.');
  fuelList.innerHTML=[...data.fuel].sort(sortDate).map(fuelHTML).join('')||empty('Še ni vnosov goriva.');
@@ -541,11 +652,10 @@ function renderHealth(){
  else if(left<=3000){score-=30;add('Servis','red')}
  else add('Servis','green');
 
- const sharedDate=v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection;
- const docDays=daysTo(sharedDate);
- if(docDays===null){score-=12;add('Registracija','white')}
- else if(docDays<30){score-=25;add('Registracija','red')}
- else add('Registracija','green');
+ const docDates=[v.registration,v.inspection,v.insurance].filter(Boolean).map(daysTo);
+ if(docDates.length<3){score-=12;add('Dokumenti','white')}
+ else if(Math.min(...docDates)<30){score-=25;add('Dokumenti','red')}
+ else add('Dokumenti','green');
 
  const vigDays=daysTo(v.vignetteTo);
  if(vigDays===null){score-=10;add('Vinjeta','white')}
@@ -566,8 +676,8 @@ function exportPDF(){
  const rows=(items,cols)=>items.length?items.map(x=>`<tr>${cols.map(c=>`<td>${esc(c(x))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}">Ni podatkov.</td></tr>`;
  const html=`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>MojAvto poročilo</title><style>
  @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111;margin:0;font-size:11px}h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;margin:20px 0 7px;border-bottom:2px solid #222;padding-bottom:4px}.meta{color:#555;margin-bottom:15px}.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.box{border:1px solid #bbb;border-radius:8px;padding:8px}.box b{display:block;font-size:12px;margin-bottom:3px}table{width:100%;border-collapse:collapse;page-break-inside:auto}tr{page-break-inside:avoid}th,td{border:1px solid #bbb;padding:5px;text-align:left;vertical-align:top}th{background:#eee}.footer{margin-top:18px;color:#666;font-size:9px;text-align:center}@media print{button{display:none}}
- </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.6.1</div>
- <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Dokumenti veljajo do</b>${fmtDate(v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
+ </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.8.0</div>
+ <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Registracija</b>${fmtDate(v.registration)}</div><div class="box"><b>Tehnični pregled</b>${fmtDate(v.inspection)}</div><div class="box"><b>Zavarovanje</b>${fmtDate(v.insurance)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
  <h2>Servisi in vzdrževanje</h2><table><thead><tr><th>Datum</th><th>Vrsta</th><th>Km</th><th>Izvajalec/opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.services].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>[x.provider,x.note].filter(Boolean).join(' – '),x=>money(x.cost)])}</tbody></table>
  <h2>Gorivo</h2><table><thead><tr><th>Datum</th><th>Črpalka</th><th>Km</th><th>Litri</th><th>Znesek</th></tr></thead><tbody>${rows([...data.fuel].sort(sortDate),[x=>fmtDate(x.date),x=>x.station||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>Number(x.liters||0).toLocaleString('sl-SI'),x=>money(x.cost)])}</tbody></table>
  <h2>Stroški</h2><table><thead><tr><th>Datum</th><th>Kategorija</th><th>Km</th><th>Opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.expenses].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>x.km?Number(x.km).toLocaleString('sl-SI'):'',x=>x.note||'',x=>money(x.cost)])}</tbody></table>
@@ -588,7 +698,9 @@ function resetData(){if(confirm('Res želiš trajno izbrisati vse podatke?')){da
 renderAll();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{});
 
-window.addEventListener('load',()=>{const splash=document.getElementById('appSplash');if(!splash)return;setTimeout(()=>splash.classList.add('splash-hidden'),650);setTimeout(()=>splash.remove(),1200);});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkAllNotifications()});
+window.addEventListener('focus',checkAllNotifications);
+window.addEventListener('load',()=>{checkAllNotifications();updateNotificationUI();const splash=document.getElementById('appSplash');if(!splash)return;setTimeout(()=>splash.classList.add('splash-hidden'),650);setTimeout(()=>splash.remove(),1200);});
 </script>
 <script src="update-manager.js"></script>
 </body>

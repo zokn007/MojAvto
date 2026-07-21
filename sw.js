@@ -1,4 +1,4 @@
-const CACHE_VERSION='mojavto-local-1.6.1';
+const CACHE_VERSION='mojavto-local-1.8.0';
 const ASSETS=['./','./index.html','./manifest.json','./cloud-sync.js','./update-manager.js','./version.json','./mojavto-icon.jpeg','./peugeot-508-sw.jpg','./dg-smart-apps.png','./icon.png','./icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_VERSION).then(cache=>Promise.allSettled(ASSETS.map(asset=>cache.add(asset)))).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE_VERSION).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
@@ -12,3 +12,5 @@ self.addEventListener('fetch',event=>{
  event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE_VERSION).then(cache=>cache.put(event.request,copy));}return response;})));
 });
 self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();});
+
+self.addEventListener('notificationclick',event=>{event.notification.close();event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{for(const c of list){if('focus' in c)return c.focus()}return clients.openWindow('./index.html')}));});

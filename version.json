@@ -1,4 +1,5 @@
 {
-  "version": "1.6.1",
-  "build": "auth-popup-fix-mojbazen-ui"
+  "version": "1.8.0",
+  "build": "diagnostics-1.8.0",
+  "released": "2026-07-21"
 }

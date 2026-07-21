@@ -1,0 +1,11 @@
+MOJAVTO 1.7.0
+
+- Ločeni datumi za registracijo, tehnični pregled, zavarovanje in vinjeto.
+- Pametna obvestila 30, 14, 7 in 1 dan pred potekom ter na dan poteka.
+- Servisno opozorilo pri 3.000 km do servisa in ob zapadlosti.
+- Nastavitve za vklop/izklop skupin obvestil.
+- Iskalnik avtomehanikov v radiju 25 km na podlagi trenutne lokacije in OpenStreetMap.
+- Prikaz oddaljenosti, naslova, telefona, spletne strani in navigacije.
+- Fallback iskanje v Google Zemljevidih.
+
+Opomba: spletna PWA preveri roke ob zagonu, vrnitvi v aplikacijo in spremembi podatkov. Za povsem neodvisna obvestila, ko aplikacija več dni ni odprta, je potreben dodatni strežniški Firebase Cloud Messaging modul.

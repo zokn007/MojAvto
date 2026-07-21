@@ -1,0 +1,11 @@
+MojAvto 1.8.0 – diagnostika okvare
+
+- Nov modul Diagnostika okvare.
+- Uporabnik opiše simptome, čas nastanka in ali je vozilo še vozno.
+- Možnost nalaganja do 5 fotografij iz galerije ali neposredno s kamero.
+- Ocena nujnosti: NE VOZI, čim prej na pregled ali spremljaj.
+- Prikaz verjetnih vzrokov in varnih naslednjih korakov.
+- Povezava do iskanja bližnjega avtomehanika.
+- Lokalna zgodovina zadnjih 30 diagnoz.
+
+Opomba: različica 1.8.0 izvaja diagnostično presojo lokalno na podlagi opisa. Fotografije so prikazane kot priloga in se ne pošiljajo v oblak. Za dejansko računalniško prepoznavanje vsebine fotografij je potreben varen strežniški AI servis.
