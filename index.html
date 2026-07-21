@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html data-app-version="1.5.9" data-build-id="manual-1.5.9" lang="sl">
+<html data-app-version="1.5.8" data-build-id="manual-1.5.8" lang="sl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.6.0" />
+  <meta name="apple-mobile-web-app-title" content="MojAvto by Davor Gričnik – Verzija 1.6.1" />
   <title>MojAvto</title>
 <link rel="icon" type="image/jpeg" href="mojavto-icon.jpeg">
 <link rel="shortcut icon" type="image/jpeg" href="mojavto-icon.jpeg">
@@ -109,34 +109,33 @@
 #appSplash.splash-hidden{opacity:0;visibility:hidden;pointer-events:none}.splash-inner{width:min(80vw,340px);text-align:center}.splash-icon{width:min(62vw,230px);height:min(62vw,230px);border-radius:25%;object-fit:cover;box-shadow:0 24px 70px rgba(0,0,0,.55)}
 .splash-name{margin-top:20px;font-size:29px;font-weight:900}.splash-sub{margin-top:6px;color:#c9d2df;font-size:14px;letter-spacing:.7px}.splash-credit{margin-top:25px;color:#8794a7;font-size:11px;line-height:1.55}
 
+
+
+.more-sync-card{overflow:hidden;padding:22px}
+.sync-main-title{font-size:24px;font-weight:900;line-height:1.18;margin:0 0 12px;color:var(--text)}
+.sync-description{font-size:14px;line-height:1.55;color:var(--muted);margin-bottom:18px}
+.sync-status-banner{border-radius:16px;padding:15px 16px;margin-bottom:14px;background:#e6f5ee;color:#167349;font-weight:800;font-size:14px}
+.sync-status-banner.off{background:rgba(255,255,255,.07);color:var(--muted);border:1px solid rgba(255,255,255,.09)}
+.sync-status-banner.warn{background:#fff0d9;color:#8a5100}.sync-status-banner.error{background:#ffe3e3;color:#a61b1b}
+.sync-account{display:none;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);padding:14px;border-radius:16px;margin:0 0 12px}
+.sync-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#dbe8f0}.sync-user-name{font-weight:850}.sync-user-email{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.sync-info{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}.sync-info-box{border-radius:16px;padding:14px;background:#f4f8fb;color:#1f2937}.sync-info-box span{display:block;color:#6b7280;font-size:12px;margin-bottom:5px}.sync-info-box strong{font-size:14px;overflow-wrap:anywhere}
+.sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sync-actions .btn{width:100%;min-height:52px;justify-content:center;text-align:center}.sync-actions .wide{grid-column:1/-1}.sync-login{width:100%;min-height:54px;background:#fff!important;color:#1f2937!important;border:1px solid #d0d5dd!important;font-weight:850!important}.google-g{font-weight:950;color:#4285f4;margin-right:8px;font-size:18px}
+.sync-message{display:none;margin-top:12px;padding:12px 14px;border-radius:13px;font-size:13px;line-height:1.45;background:#fff0d9;color:#8a5100}.sync-message.error{background:#ffe3e3;color:#a61b1b}
+@media(max-width:430px){.more-sync-card{padding:18px}.sync-main-title{font-size:22px}.sync-actions{grid-template-columns:1fr 1fr}.sync-actions .btn{font-size:13px;padding:10px 7px}}
+
 </style>
 
 <!-- DG Cloud Sync: Firebase Authentication + Cloud Firestore -->
 <script>window.DG_CLOUD_CONFIG={"appId": "mojavto", "appName": "MojAvto", "keys": ["mojAvtoV1"], "prefixes": ["service-notified-"]};</script>
-<script src="/__/firebase/12.16.0/firebase-app-compat.js"></script>
-<script src="/__/firebase/12.16.0/firebase-auth-compat.js"></script>
-<script src="/__/firebase/12.16.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="/__/firebase/init.js"></script>
-<script src="cloud-sync.js"></script>
+<script src="cloud-sync.js?v=1.6.1"></script>
 </head>
 <body>
 <div id="appSplash" aria-label="MojAvto se nalaga"><div class="splash-inner"><img class="splash-icon" src="mojavto-icon.jpeg" alt="MojAvto"><div class="splash-name">MojAvto</div><div class="splash-sub">DG Smart app</div><div class="splash-credit">Designed &amp; Developed<br>by Davor Gričnik © 2026</div></div></div>
-<script>
-// Neodvisno varovalo: splash se odstrani tudi ob napaki v glavni aplikaciji.
-(() => {
-  const hideSplash = () => {
-    const splash = document.getElementById('appSplash');
-    if (!splash) return;
-    splash.classList.add('splash-hidden');
-    setTimeout(() => splash.remove(), 500);
-  };
-  window.__hideMojAvtoSplash = hideSplash;
-  setTimeout(hideSplash, 1800);
-  window.addEventListener('load', () => setTimeout(hideSplash, 500), {once:true});
-  window.addEventListener('error', () => setTimeout(hideSplash, 100));
-  window.addEventListener('unhandledrejection', () => setTimeout(hideSplash, 100));
-})();
-</script>
 <div class="app">
 
   <main>
@@ -229,19 +228,36 @@
     <section id="more" class="section">
 <div class="section-title"><h2>Opomniki</h2><button class="btn primary" onclick="openModal('reminder')">+ Dodaj</button></div>
       <div id="reminderList" class="list"></div>
-      <div class="section-title"><h2>Google račun in sinhronizacija</h2></div>
-      <div class="card">
-        <div id="moreSyncStatus" class="notice">Preverjam stanje sinhronizacije …</div>
-        <div id="moreSyncUser" class="sub" style="margin:0 0 12px">Za sinhronizacijo med napravami se prijavi z Google računom.</div>
-        <div style="display:flex;flex-wrap:wrap;gap:9px">
-          <button id="moreSyncAccountBtn" class="btn primary" onclick="openCloudSync()">Prijava z Googlom</button>
-          <button class="btn" onclick="syncCloudNow()">Sinhroniziraj zdaj</button>
+      <div class="section-title"><h2>Google sinhronizacija</h2></div>
+      <div class="card more-sync-card">
+        <h3 class="sync-main-title">Firebase – sinhronizacija in varnostne kopije</h3>
+        <div class="sync-description">Prijavi se z istim Google računom na vseh napravah. Spremembe se nato samodejno prenašajo med telefonom, tablico in računalnikom.</div>
+        <div id="syncStatusBanner" class="sync-status-banner off">Preverjanje prijave …</div>
+        <div id="syncSignedOut">
+          <button id="moreCloudLogin" type="button" class="btn sync-login"><span class="google-g">G</span> Prijava z Googlom</button>
         </div>
-        <div class="sub" style="margin-top:12px">Po prijavi se spremembe samodejno shranjujejo v Firebase in prenesejo na druge naprave, kjer se prijaviš z istim računom.</div>
+        <div id="syncSignedIn" style="display:none">
+          <div id="syncAccount" class="sync-account">
+            <img id="syncAvatar" class="sync-avatar" alt="Google račun">
+            <div><div id="syncUserName" class="sync-user-name">Uporabnik</div><div id="syncUserEmail" class="sync-user-email"></div></div>
+          </div>
+          <div class="sync-info">
+            <div class="sync-info-box"><span>Zadnja sinhronizacija</span><strong id="syncLastTime">Še nikoli</strong></div>
+            <div class="sync-info-box"><span>Naprava</span><strong id="syncDeviceName">Ta naprava</strong></div>
+          </div>
+          <div class="sync-actions">
+            <button id="moreCloudSyncNow" type="button" class="btn primary">Sinhroniziraj zdaj</button>
+            <button id="moreCloudRestore" type="button" class="btn">Obnovi iz oblaka</button>
+            <button id="moreCloudExport" type="button" class="btn">Izvozi kopijo</button>
+            <label class="btn" style="display:flex;align-items:center;cursor:pointer">Obnovi iz datoteke<input id="moreCloudImport" type="file" accept="application/json,.json" hidden></label>
+            <button id="moreCloudLogout" type="button" class="btn danger wide">Odjava</button>
+          </div>
+        </div>
+        <div id="syncMessage" class="sync-message"></div>
       </div>
       <div class="section-title"><h2>Podatki in varnost</h2></div>
       <div class="card">
-        <div class="notice">Podatki se hranijo lokalno. Ko je Google sinhronizacija vključena, se varnostna kopija samodejno shranjuje tudi v oblak.</div>
+        <div class="notice">Podatki se hranijo lokalno. Ko je Google sinhronizacija vključena, se samodejno varnostno kopirajo tudi v oblak.</div>
         <div style="display:flex;flex-wrap:wrap;gap:9px">
           <button class="btn" onclick="exportJSON()">Varnostna kopija JSON</button>
           <button class="btn" onclick="exportCSV()">Izvoz CSV</button>
@@ -252,7 +268,7 @@
       </div>
       <div class="section-title"><h2>O aplikaciji</h2></div>
       <div class="card">
-        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.6.0</div></div></div>
+        <div class="about-brand"><img class="about-logo" src="mojavto-icon.jpeg" alt="MojAvto"><div><strong>MojAvto by Davor Gričnik</strong><div class="sub">Verzija 1.6.1</div></div></div>
         <div class="sub">Designed &amp; Developed by Davor Gričnik © 2026</div>
       </div>
       <div class="app-footer">Designed &amp; Developed by Davor Gričnik © 2026</div>
@@ -550,7 +566,7 @@ function exportPDF(){
  const rows=(items,cols)=>items.length?items.map(x=>`<tr>${cols.map(c=>`<td>${esc(c(x))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}">Ni podatkov.</td></tr>`;
  const html=`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>MojAvto poročilo</title><style>
  @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111;margin:0;font-size:11px}h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;margin:20px 0 7px;border-bottom:2px solid #222;padding-bottom:4px}.meta{color:#555;margin-bottom:15px}.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.box{border:1px solid #bbb;border-radius:8px;padding:8px}.box b{display:block;font-size:12px;margin-bottom:3px}table{width:100%;border-collapse:collapse;page-break-inside:auto}tr{page-break-inside:avoid}th,td{border:1px solid #bbb;padding:5px;text-align:left;vertical-align:top}th{background:#eee}.footer{margin-top:18px;color:#666;font-size:9px;text-align:center}@media print{button{display:none}}
- </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.6.0</div>
+ </style></head><body><h1>MojAvto – poročilo</h1><div class="meta">Izdelano ${new Date().toLocaleString('sl-SI')} • Verzija 1.6.1</div>
  <div class="summary"><div class="box"><b>Vozilo</b>${esc([v.brand,v.model,v.year].filter(Boolean).join(' ')||'Ni vneseno')}</div><div class="box"><b>Registracija</b>${esc(v.plate||'—')}</div><div class="box"><b>Trenutni kilometri</b>${Number(v.km||0).toLocaleString('sl-SI')} km</div><div class="box"><b>VIN</b>${esc(v.vin||'—')}</div><div class="box"><b>Dokumenti veljajo do</b>${fmtDate(v.vehicleDocumentsDate||v.registration||v.insurance||v.inspection)}</div><div class="box"><b>Vinjeta velja do</b>${fmtDate(v.vignetteTo)}</div></div>
  <h2>Servisi in vzdrževanje</h2><table><thead><tr><th>Datum</th><th>Vrsta</th><th>Km</th><th>Izvajalec/opis</th><th>Znesek</th></tr></thead><tbody>${rows([...data.services].sort(sortDate),[x=>fmtDate(x.date),x=>x.category||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>[x.provider,x.note].filter(Boolean).join(' – '),x=>money(x.cost)])}</tbody></table>
  <h2>Gorivo</h2><table><thead><tr><th>Datum</th><th>Črpalka</th><th>Km</th><th>Litri</th><th>Znesek</th></tr></thead><tbody>${rows([...data.fuel].sort(sortDate),[x=>fmtDate(x.date),x=>x.station||'',x=>Number(x.km||0).toLocaleString('sl-SI'),x=>Number(x.liters||0).toLocaleString('sl-SI'),x=>money(x.cost)])}</tbody></table>
@@ -569,40 +585,10 @@ function exportCSV(){
 function download(name,content,type){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
 function importJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();alert('Podatki so uspešno uvoženi.')}catch{alert('Datoteka ni veljavna.')}};r.readAsText(f)}
 function resetData(){if(confirm('Res želiš trajno izbrisati vse podatke?')){data=structuredClone(emptyData);save()}}
-function openCloudSync(){
-  if(window.DGCloudSync&&window.DGCloudSync.open) window.DGCloudSync.open();
-  else alert('Firebase sinhronizacija se še nalaga. Poskusi ponovno čez trenutek.');
-}
-async function syncCloudNow(){
-  if(!window.DGCloudSync){alert('Firebase sinhronizacija se še nalaga.');return}
-  const state=window.DGCloudSync.getState();
-  if(!state.signedIn){window.DGCloudSync.open();return}
-  try{await window.DGCloudSync.syncNow();updateMoreSyncCard();alert('Sinhronizacija je zaključena.')}catch(e){alert('Sinhronizacija ni uspela. Preveri internetno povezavo.')}
-}
-function updateMoreSyncCard(){
-  const status=document.getElementById('moreSyncStatus'), user=document.getElementById('moreSyncUser'), btn=document.getElementById('moreSyncAccountBtn');
-  if(!status||!user||!btn)return;
-  if(!window.DGCloudSync){status.textContent='Firebase sinhronizacija se nalaga …';return}
-  const s=window.DGCloudSync.getState();
-  if(s.signedIn){
-    status.textContent=s.online?'✓ Samodejna sinhronizacija je vključena':'Brez povezave – spremembe se bodo poslale, ko bo internet znova na voljo.';
-    user.textContent='Prijavljen uporabnik: '+(s.userName||s.email)+(s.lastSuccess?' • zadnja sinhronizacija '+new Date(s.lastSuccess).toLocaleString('sl-SI'):'');
-    btn.textContent='Račun in odjava';
-  }else{
-    status.textContent='Sinhronizacija ni vključena.';
-    user.textContent='Za sinhronizacijo med napravami se prijavi z Google računom.';
-    btn.textContent='Prijava z Googlom';
-  }
-}
-window.addEventListener('dg-cloud-ready',updateMoreSyncCard);
-window.addEventListener('online',updateMoreSyncCard);
-window.addEventListener('offline',updateMoreSyncCard);
-setInterval(updateMoreSyncCard,3000);
-try { renderAll(); } catch (error) { console.error('MojAvto initialization error:', error); } finally { if (window.__hideMojAvtoSplash) setTimeout(window.__hideMojAvtoSplash, 650); }
-setTimeout(updateMoreSyncCard,500);
+renderAll();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{});
 
-window.addEventListener('load',()=>{if(window.__hideMojAvtoSplash)setTimeout(window.__hideMojAvtoSplash,650);});
+window.addEventListener('load',()=>{const splash=document.getElementById('appSplash');if(!splash)return;setTimeout(()=>splash.classList.add('splash-hidden'),650);setTimeout(()=>splash.remove(),1200);});
 </script>
 <script src="update-manager.js"></script>
 </body>

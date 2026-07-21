@@ -1,4 +1,4 @@
 {
-  "version": "1.6.0",
-  "build": "manual-1.6.0"
+  "version": "1.6.1",
+  "build": "auth-popup-fix-mojbazen-ui"
 }

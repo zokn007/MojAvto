@@ -134,6 +134,7 @@
     button.setAttribute('aria-label', 'Cloud Sync in uporabniški račun');
     button.textContent = '☁️';
     button.onclick = openPanel;
+    button.style.display = 'none';
     document.body.appendChild(button);
 
     const panel = document.createElement('div');
@@ -162,6 +163,18 @@
     document.getElementById('dg-cloud-logout').onclick = () => firebase.auth().signOut();
     document.getElementById('dg-cloud-export').onclick = exportBackup;
     document.getElementById('dg-cloud-import').onchange = importBackup;
+    const inlineLogin = document.getElementById('moreCloudLogin');
+    const inlineSync = document.getElementById('moreCloudSyncNow');
+    const inlineRestore = document.getElementById('moreCloudRestore');
+    const inlineExport = document.getElementById('moreCloudExport');
+    const inlineImport = document.getElementById('moreCloudImport');
+    const inlineLogout = document.getElementById('moreCloudLogout');
+    if (inlineLogin) { inlineLogin.onclick = null; inlineLogin.addEventListener('click', login, { passive: false }); }
+    if (inlineSync) inlineSync.onclick = () => currentUser ? upload() : login();
+    if (inlineRestore) inlineRestore.onclick = restoreFromCloud;
+    if (inlineExport) inlineExport.onclick = exportBackup;
+    if (inlineImport) inlineImport.onchange = importBackup;
+    if (inlineLogout) inlineLogout.onclick = () => firebase.auth().signOut();
     updatePanel();
   }
 
@@ -186,33 +199,115 @@
     if (cloudButton) cloudButton.dataset.online = navigator.onLine ? 'true' : 'false';
     const meta = (() => { try { return JSON.parse(localStorage.getItem(metaKey) || '{}'); } catch (_) { return {}; } })();
 
+    const statusBanner = document.getElementById('syncStatusBanner');
+
     if (currentUser) {
       status.textContent = navigator.onLine ? 'Samodejna sinhronizacija je vključena' : 'Brez povezave – spremembe čakajo na prenos';
       user.textContent = currentUser.displayName || currentUser.email || 'Prijavljen uporabnik';
       last.textContent = 'Zadnja uspešna sinhronizacija: ' + formatTime(meta.lastSuccess);
       loginButton.style.display = 'none';
       logoutButton.style.display = 'block';
+      if (statusBanner) { statusBanner.textContent = navigator.onLine ? 'Vsi podatki so sinhronizirani.' : 'Brez povezave – spremembe so shranjene lokalno.'; statusBanner.className = 'sync-status-banner' + (navigator.onLine ? '' : ' warn'); }
     } else {
       status.textContent = 'Sinhronizacija ni vključena';
       user.textContent = 'Za sinhronizacijo te aplikacije se prijavi z Googlom.';
       last.textContent = 'Vsaka aplikacija uporablja svojo prijavo in svoj Firebase projekt.';
       loginButton.style.display = 'block';
       logoutButton.style.display = 'none';
+      if (statusBanner) { statusBanner.textContent = 'Sinhronizacija še ni vključena.'; statusBanner.className = 'sync-status-banner off'; }
+    }
+
+    const signedOut = document.getElementById('syncSignedOut');
+    const signedIn = document.getElementById('syncSignedIn');
+    const account = document.getElementById('syncAccount');
+    const avatar = document.getElementById('syncAvatar');
+    const userName = document.getElementById('syncUserName');
+    const userEmail = document.getElementById('syncUserEmail');
+    const lastTime = document.getElementById('syncLastTime');
+    const deviceName = document.getElementById('syncDeviceName');
+    if (currentUser) {
+      if (signedOut) signedOut.style.display = 'none';
+      if (signedIn) signedIn.style.display = 'block';
+      if (account) account.style.display = 'flex';
+      if (avatar) { avatar.src = currentUser.photoURL || 'icon.png'; avatar.style.display = 'block'; }
+      if (userName) userName.textContent = currentUser.displayName || 'Google uporabnik';
+      if (userEmail) userEmail.textContent = currentUser.email || '';
+      if (lastTime) lastTime.textContent = formatTime(meta.lastSuccess);
+      if (deviceName) deviceName.textContent = /iPhone|iPad|iPod/.test(navigator.userAgent) ? 'iPhone / iPad' : (/Android/.test(navigator.userAgent) ? 'Android' : 'Spletni brskalnik');
+
+    } else {
+      if (signedOut) signedOut.style.display = 'block';
+      if (signedIn) signedIn.style.display = 'none';
+
     }
   }
 
-  async function login() {
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      await firebase.auth().signInWithPopup(provider);
-    } catch (error) {
-      if (['auth/popup-blocked', 'auth/cancelled-popup-request', 'auth/operation-not-supported-in-this-environment'].includes(error.code)) {
-        await firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-      } else {
-        console.error(error);
-        toast('Prijava ni uspela: ' + (error.message || error.code), true);
-      }
+  function isAppleMobile() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  function isStandalone() {
+    return window.matchMedia && window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
+
+  async function login(event) {
+    if (event && event.preventDefault) event.preventDefault();
+    if (!window.firebase || !firebase.auth) {
+      const message = 'Firebase se ni naložil. Osveži aplikacijo in preveri, ali je objavljena prek Firebase Hosting.';
+      toast(message, true);
+      showInlineMessage(message, true);
+      return;
     }
+    if (!navigator.onLine) {
+      const message = 'Za prijavo je potrebna internetna povezava.';
+      toast(message, true);
+      showInlineMessage(message, true);
+      return;
+    }
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    showInlineMessage('Odpiram Google prijavo …', false);
+    try {
+      // Pojavno okno se mora odpreti neposredno ob kliku. Pred njim ne čakamo
+      // na nobeno drugo async operacijo, ker iOS sicer izgubi uporabniško dejanje.
+      const result = await firebase.auth().signInWithPopup(provider);
+      if (result && result.user) showInlineMessage('', false);
+    } catch (error) {
+      console.error(error);
+      const redirectCodes = ['auth/popup-blocked','auth/cancelled-popup-request','auth/operation-not-supported-in-this-environment'];
+      if (redirectCodes.includes(error && error.code)) {
+        try {
+          sessionStorage.setItem('dgAuthRedirectPending', '1');
+          await firebase.auth().signInWithRedirect(provider);
+          return;
+        } catch (redirectError) {
+          console.error(redirectError);
+          error = redirectError;
+        }
+      }
+      const message = friendlyAuthError(error);
+      toast(message, true);
+      showInlineMessage(message, true);
+    }
+  }
+
+  function friendlyAuthError(error) {
+    const code = error && error.code || '';
+    if (code === 'auth/unauthorized-domain') return 'Ta spletni naslov še ni dovoljen v Firebase Authentication. Dodaj domeno med Authorized domains.';
+    if (code === 'auth/operation-not-allowed') return 'Google prijava v Firebase projektu še ni vključena.';
+    if (code === 'auth/network-request-failed') return 'Ni povezave z internetom. Preveri povezavo in poskusi znova.';
+    if (code === 'auth/web-storage-unsupported') return 'Brskalnik blokira shranjevanje prijave. Odpri aplikacijo v Safariju in poskusi znova.';
+    if (code === 'auth/popup-closed-by-user') return 'Prijavno okno je bilo zaprto pred dokončanjem prijave.';
+    if (code === 'auth/internal-error') return 'Google prijava se ni pravilno odprla. Osveži aplikacijo in poskusi ponovno.';
+    return 'Prijava ni uspela: ' + ((error && (error.message || error.code)) || 'neznana napaka');
+  }
+
+  function showInlineMessage(message, isError) {
+    const box = document.getElementById('syncMessage');
+    if (!box) return;
+    box.textContent = message || '';
+    box.className = 'sync-message' + (isError ? ' error' : '');
+    box.style.display = message ? 'block' : 'none';
   }
 
   function documentRef() {
@@ -371,6 +466,21 @@
     hideStatus();
   }
 
+  async function restoreFromCloud() {
+    if (!currentUser) { await login(); return; }
+    if (!navigator.onLine) { showInlineMessage('Za obnovo iz oblaka je potrebna internetna povezava.', true); return; }
+    if (!confirm('Lokalne podatke na tej napravi želiš zamenjati s podatki iz oblaka? Pred obnovo bo ustvarjena lokalna varnostna kopija.')) return;
+    try {
+      exportBackup();
+      const snap = await documentRef().get({ source: 'server' });
+      if (!snap.exists || !snap.data() || !snap.data().data) throw new Error('V oblaku še ni shranjene kopije.');
+      applyRemote(snap.data());
+    } catch (error) {
+      console.error(error);
+      showInlineMessage('Obnova ni uspela: ' + (error.message || error), true);
+    }
+  }
+
   function exportBackup() {
     const blob = new Blob([JSON.stringify({
       appId: cfg.appId,
@@ -423,14 +533,34 @@
     }
   });
 
+  window.DGCloudSync = {
+    open: openPanel,
+    syncNow: function () {
+      if (!currentUser) { openPanel(); return; }
+      upload();
+    },
+    login: login,
+    logout: function () { return firebase.auth().signOut(); },
+    restore: restoreFromCloud,
+    exportBackup: exportBackup
+  };
+
   function boot() {
     injectUI();
-    if (!window.firebase) {
+    if (!window.firebase || !firebase.auth || !firebase.firestore) {
+      showInlineMessage('Firebase knjižnice se niso naložile. Preveri internetno povezavo in ponovno odpri aplikacijo.', true);
       showStatus('error', '☁️ Firebase se ni naložil', false);
       return;
     }
     try {
       firebase.firestore().enablePersistence({ synchronizeTabs: true }).catch(() => {});
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
+      firebase.auth().getRedirectResult().then((result) => {
+        if (result && result.user) showInlineMessage('', false);
+      }).catch((error) => {
+        console.error(error);
+        showInlineMessage(friendlyAuthError(error), true);
+      });
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           startSync(user).catch((error) => {
@@ -446,29 +576,6 @@
       showStatus('error', '☁️ Firebase ni pravilno nastavljen', false);
     }
   }
-
-  window.DGCloudSync = {
-    open: openPanel,
-    close: closePanel,
-    login: login,
-    logout: () => window.firebase && firebase.auth().signOut(),
-    syncNow: async () => {
-      if (!currentUser) { openPanel(); return false; }
-      await upload();
-      return true;
-    },
-    getState: () => {
-      const meta = (() => { try { return JSON.parse(localStorage.getItem(metaKey) || '{}'); } catch (_) { return {}; } })();
-      return {
-        signedIn: Boolean(currentUser),
-        online: navigator.onLine,
-        userName: currentUser ? (currentUser.displayName || currentUser.email || 'Prijavljen uporabnik') : '',
-        email: currentUser ? (currentUser.email || '') : '',
-        lastSuccess: meta.lastSuccess || null
-      };
-    }
-  };
-  window.dispatchEvent(new CustomEvent('dg-cloud-ready'));
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
