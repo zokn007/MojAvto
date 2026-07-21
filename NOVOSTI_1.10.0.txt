@@ -1,0 +1,8 @@
+MojAvto 1.10.0
+
+- Pri točenju je dodan obvezen vnos kilometrov.
+- Dodan je gumb Osveži cene goriva glede na vrsto goriva vozila.
+- Predlagano ceno na liter je mogoče ročno popraviti.
+- Skupni znesek in poraba se sproti izračunata.
+- Lastni opomniki sprožijo sistemsko obvestilo dan prej in na dan dogodka.
+- Nastavitve pametnih obvestil so združene v razdelku Opomnik.
