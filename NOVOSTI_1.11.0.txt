@@ -1,0 +1,9 @@
+MojAvto 1.11.0
+
+- Dodan datum nakupa pnevmatik.
+- Vrnjen vnos bencinskega servisa / črpalke pri tankanju.
+- Dodano urejanje obstoječih vnosov goriva.
+- Pri urejanju tankanja se posodobi tudi povezani strošek goriva.
+- Cena goriva se ob novem tankanju samodejno predizpolni; spletni vir jo nato posodobi, če je dosegljiv.
+- Status datumov: zeleno do 15 dni pred potekom, oranžno zadnjih 14 dni, rdeče po poteku.
+- Veljaven datum sam po sebi ne znižuje zdravja vozila.

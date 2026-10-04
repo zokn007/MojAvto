@@ -1,0 +1,6 @@
+MojAvto 1.12.0
+- Urejanje servisov, ročnih stroškov in opomnikov.
+- Zdravje avta prikazuje razumljiv status: V redu, poteče čez X dni, poteklo pred X dnevi oziroma servis čez X km.
+- Hiter izbor do 5 najpogosteje uporabljenih bencinskih servisov pri tankanju.
+- Enoten stroškovni model: gorivo in servisi se v Stroških izračunajo neposredno iz izvornih zapisov; ročni stroški ostanejo samostojni.
+- Migracija odstrani stare podvojene izpeljane stroške goriva/servisov.
